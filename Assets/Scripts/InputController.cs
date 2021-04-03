@@ -27,7 +27,15 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""25a6b781-3c7f-448a-b5dc-c1ebcbeec143"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""80a4e1be-0f5f-468b-a4f6-2b29cba3b245"",
                     ""expectedControlType"": ""Button"",
@@ -38,7 +46,18 @@ public class @InputController : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ad829e24-5773-4367-a420-d0ae57a2a227"",
+                    ""id"": ""2f0d5f6a-cf96-4fb8-912d-32d131651188"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4da350a-38b9-4966-8968-a81cd8cc4c39"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -49,12 +68,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2f0d5f6a-cf96-4fb8-912d-32d131651188"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""id"": ""eed9b8d5-c12e-44ab-a3f0-ce02df78d437"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Click"",
+                    ""action"": ""Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -66,7 +85,8 @@ public class @InputController : IInputActionCollection, IDisposable
         // Figure
         m_Figure = asset.FindActionMap("Figure", throwIfNotFound: true);
         m_Figure_Rotation = m_Figure.FindAction("Rotation", throwIfNotFound: true);
-        m_Figure_Click = m_Figure.FindAction("Click", throwIfNotFound: true);
+        m_Figure_Mode = m_Figure.FindAction("Mode", throwIfNotFound: true);
+        m_Figure_Select = m_Figure.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,13 +137,15 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Figure;
     private IFigureActions m_FigureActionsCallbackInterface;
     private readonly InputAction m_Figure_Rotation;
-    private readonly InputAction m_Figure_Click;
+    private readonly InputAction m_Figure_Mode;
+    private readonly InputAction m_Figure_Select;
     public struct FigureActions
     {
         private @InputController m_Wrapper;
         public FigureActions(@InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotation => m_Wrapper.m_Figure_Rotation;
-        public InputAction @Click => m_Wrapper.m_Figure_Click;
+        public InputAction @Mode => m_Wrapper.m_Figure_Mode;
+        public InputAction @Select => m_Wrapper.m_Figure_Select;
         public InputActionMap Get() { return m_Wrapper.m_Figure; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,9 +158,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotation.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
-                @Click.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
+                @Mode.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnMode;
+                @Mode.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnMode;
+                @Mode.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnMode;
+                @Select.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_FigureActionsCallbackInterface = instance;
             if (instance != null)
@@ -146,9 +171,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
+                @Mode.started += instance.OnMode;
+                @Mode.performed += instance.OnMode;
+                @Mode.canceled += instance.OnMode;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -156,6 +184,7 @@ public class @InputController : IInputActionCollection, IDisposable
     public interface IFigureActions
     {
         void OnRotation(InputAction.CallbackContext context);
-        void OnClick(InputAction.CallbackContext context);
+        void OnMode(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
