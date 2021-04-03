@@ -20,8 +20,16 @@ public class @InputController : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Rotation"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""a48135e5-e2c7-4e25-9186-17af56176a51"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""80a4e1be-0f5f-468b-a4f6-2b29cba3b245"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -29,37 +37,26 @@ public class @InputController : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""X-axis"",
-                    ""id"": ""6d920bdd-5e54-4a91-97b0-068bf8d9c9f5"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""ad829e24-5773-4367-a420-d0ae57a2a227"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotation"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""7e55833d-a444-4ab3-a3f0-9c8ed1c0a7b7"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
+                    ""name"": """",
+                    ""id"": ""2f0d5f6a-cf96-4fb8-912d-32d131651188"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotation"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""cddfbfb1-c0f0-4c22-9d2f-af1c5ebad16a"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -69,6 +66,7 @@ public class @InputController : IInputActionCollection, IDisposable
         // Figure
         m_Figure = asset.FindActionMap("Figure", throwIfNotFound: true);
         m_Figure_Rotation = m_Figure.FindAction("Rotation", throwIfNotFound: true);
+        m_Figure_Click = m_Figure.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +117,13 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Figure;
     private IFigureActions m_FigureActionsCallbackInterface;
     private readonly InputAction m_Figure_Rotation;
+    private readonly InputAction m_Figure_Click;
     public struct FigureActions
     {
         private @InputController m_Wrapper;
         public FigureActions(@InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotation => m_Wrapper.m_Figure_Rotation;
+        public InputAction @Click => m_Wrapper.m_Figure_Click;
         public InputActionMap Get() { return m_Wrapper.m_Figure; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +136,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotation.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnRotation;
+                @Click.started -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_FigureActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_FigureActionsCallbackInterface = instance;
             if (instance != null)
@@ -143,6 +146,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -150,5 +156,6 @@ public class @InputController : IInputActionCollection, IDisposable
     public interface IFigureActions
     {
         void OnRotation(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

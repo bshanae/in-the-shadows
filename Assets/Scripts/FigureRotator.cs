@@ -1,32 +1,58 @@
-using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
-public class				FigureRotator : MonoBehaviour
+public class FigureRotator : MonoBehaviour
 {
-	private InputController	_inputController;
+	[SerializeField] private float sensitivity;
 
-	private void			Awake() 
+	private InputController _inputController;
+	private bool            _isBusy;
+
+	private void Awake()
 	{
 		_inputController = new InputController();
-		_inputController.Figure.Rotation.performed += RotationPerformed;
+		_inputController.Figure.Click.performed += TryStartRotation;
+		_inputController.Figure.Click.canceled  += CancelRotation;
+
+		_isBusy = false;
 	}
 
-	private void			OnEnable()
+	private void OnEnable()
 	{
 		_inputController.Enable();
 	}
 
-	private void			OnDisable()
+	private void OnDisable()
 	{
 		_inputController.Disable();
 	}
 
-	private void			RotationPerformed(InputAction.CallbackContext context)
+	private void TryStartRotation(InputAction.CallbackContext context)
 	{
-		float rotation = context.ReadValue<float>() * 10;
+		if (!_isBusy)
+		{
+			_inputController.Figure.Rotation.performed += PerformRotation;
+			_isBusy = true;
+		}
+	}
+
+	private void CancelRotation(InputAction.CallbackContext context)
+	{
+		_inputController.Figure.Rotation.performed -= PerformRotation;
+		_isBusy = false;
+	}
+
+	private void PerformRotation(InputAction.CallbackContext context)
+	{
+		var camera = Camera.main;
+		var rotation = context.ReadValue<Vector2>() * sensitivity;
+
+		Assert.IsNotNull(camera);
+
+		var cameraTransform = camera.transform;
 		
-		Debug.Log($"Rotation = {rotation}");
-		transform.Rotate(rotation, 0f, 0f);
+		transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
+		transform.Rotate(cameraTransform.right, rotation.y, Space.World);
 	}
 }
