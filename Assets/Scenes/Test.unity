@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 451129355}
   - component: {fileID: 451129356}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Figure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,10 +257,10 @@ Light:
   m_GameObject: {fileID: 451129353}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 35
+  m_Intensity: 0.45
   m_Range: 100
   m_SpotAngle: 86.27823
   m_InnerSpotAngle: 72.80657
@@ -271,8 +271,8 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 1
-    m_NormalBias: 1
-    m_NearPlane: 0.2
+    m_NormalBias: 0
+    m_NearPlane: 1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -348,43 +348,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.26
+      value: -7.2598596
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.38
+      value: 8.378153
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.0071612396
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.93329555
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.20043264
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.28202674
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.096162684
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 25.364
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 32.679
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -4.217
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_Name
@@ -394,6 +394,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5039687269024256309, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c881621bbc4774a85b0705cc219af04e, type: 2}
     - target: {fileID: 6471496338278676438, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -517,7 +521,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 100
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -739,7 +743,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 198bd75ac72054c7386610a1fdcc2b1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -3863784377773240729, guid: a6479ca87a15144a7984c0fe89d4a364, type: 3}
+      objectReference: {fileID: 2100000, guid: ee96963174cb64c93826197990180742, type: 2}
     - target: {fileID: 919132149155446097, guid: 198bd75ac72054c7386610a1fdcc2b1d, type: 3}
       propertyPath: m_Name
       value: Plane
