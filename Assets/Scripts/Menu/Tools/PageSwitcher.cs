@@ -33,14 +33,12 @@ namespace Menu
 
 		private IEnumerator FadeCoroutine(Page page, float alphaStart, float alphaFinish, float duration)
 		{
-			const float threshold = 0.001f;
-
 			var canvasGroup = page.GetComponent<CanvasGroup>();
 			var alphaStep = (alphaFinish - alphaStart) / duration;
 
 			canvasGroup.alpha = alphaStart;
 			
-			while(Mathf.Abs(canvasGroup.alpha - alphaFinish) > threshold)
+			while(Mathf.Abs(canvasGroup.alpha - alphaFinish) > float.Epsilon)
 			{
 				canvasGroup.alpha += alphaStep * Time.deltaTime;
 				yield return null;
