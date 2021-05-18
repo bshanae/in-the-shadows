@@ -1,20 +1,22 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace Game
 {
-	// [RequireComponent(typeof(Volume))]
+	[RequireComponent(typeof(PostProcessVolume))]
 	public class VignetteFader : MonoBehaviour
 	{
 		[SerializeField] private float fadingDuration;
 
-		// private Volume _volume;
-		//
-		// private void Awake()
-		// {
-		// 	_volume = GetComponent<Volume>();
-		// }
+		private PostProcessVolume _volume;
+		
+		private void Awake()
+		{
+			_volume = GetComponent<PostProcessVolume>();
+		}
 
 		private void Start()
 		{
@@ -28,19 +30,28 @@ namespace Game
 
 		private IEnumerator FadeCoroutine(float startWeight, float finishWeight)
 		{
-			// var step = (finishWeight - startWeight) / fadingDuration;
+			var sign = Mathf.Sign(finishWeight - startWeight);
+			var step = (finishWeight - startWeight) / fadingDuration;
 
-			// _volume.weight = startWeight;
-			//
-			// while (Mathf.Abs(_volume.weight - finishWeight) > float.Epsilon)
-			// {
-			// 	_volume.weight += step * Time.deltaTime;
-			// 	yield return null;
-			// }
-			//
-			// _volume.weight = finishWeight;
+			_volume.weight = startWeight;
+			
+			while (!DidFinish())
+			{
+				_volume.weight += step * Time.deltaTime;
+				yield return null;
+			}
+			
+			_volume.weight = finishWeight;
 
-			return null;
+			bool DidFinish()
+			{
+				if (sign > 0f)
+					return _volume.weight >= finishWeight;
+				if (sign < 0f)
+					return _volume.weight <= finishWeight;
+
+				throw new Exception("Start and finish value are same");
+			}
 		}
 	}
 }
