@@ -4,17 +4,17 @@ using UnityEngine.Rendering;
 
 namespace Game
 {
-	[RequireComponent(typeof(Volume))]
+	// [RequireComponent(typeof(Volume))]
 	public class VignetteFader : MonoBehaviour
 	{
 		[SerializeField] private float fadingDuration;
 
-		private Volume _volume;
-
-		private void Awake()
-		{
-			_volume = GetComponent<Volume>();
-		}
+		// private Volume _volume;
+		//
+		// private void Awake()
+		// {
+		// 	_volume = GetComponent<Volume>();
+		// }
 
 		private void Start()
 		{
@@ -28,17 +28,19 @@ namespace Game
 
 		private IEnumerator FadeCoroutine(float startWeight, float finishWeight)
 		{
-			var step = (finishWeight - startWeight) / fadingDuration;
+			// var step = (finishWeight - startWeight) / fadingDuration;
 
-			_volume.weight = startWeight;
+			// _volume.weight = startWeight;
+			//
+			// while (Mathf.Abs(_volume.weight - finishWeight) > float.Epsilon)
+			// {
+			// 	_volume.weight += step * Time.deltaTime;
+			// 	yield return null;
+			// }
+			//
+			// _volume.weight = finishWeight;
 
-			while (Mathf.Abs(_volume.weight - finishWeight) > float.Epsilon)
-			{
-				_volume.weight += step * Time.deltaTime;
-				yield return null;
-			}
-
-			_volume.weight = finishWeight;
+			return null;
 		}
 	}
 }
