@@ -1,24 +1,23 @@
 using System.Collections;
 using Common.Math;
-using LevelMenu;
 using UnityEngine;
 
-namespace Menus.LevelMenu
+namespace LevelMenu
 {
-	[RequireComponent(typeof(CubeRotator))]
+	[RequireComponent(typeof(CubeInput))]
 	public class CubeRotationRestorer : MonoBehaviour
 	{
-		private CubeRotator _cubeRotator;
+		private CubeInput _cubeInput;
 		private Coroutine _coroutine;
 
 		private void Awake()
 		{
-			_cubeRotator = GetComponent<CubeRotator>();
+			_cubeInput = GetComponent<CubeInput>();
 		}
 
 		private void Update()
 		{
-			if (!_cubeRotator.IsEnabled && !transform.rotation.IsZero() && _coroutine == null)
+			if (!_cubeInput.IsEnabled && !transform.rotation.IsZero() && _coroutine == null)
 				StartCoroutine(RestorationRoutine());
 		}
 
@@ -29,7 +28,7 @@ namespace Menus.LevelMenu
 
 			do
 			{
-				if (_cubeRotator.IsEnabled)
+				if (_cubeInput.IsEnabled)
 				{
 					_coroutine = null;
 					yield break;

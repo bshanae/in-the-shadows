@@ -17,14 +17,22 @@ namespace LevelMenu
     ""name"": ""LevelMenu"",
     ""maps"": [
         {
-            ""name"": ""CubeRotation"",
+            ""name"": ""CubeControl"",
             ""id"": ""39c86813-daee-4bfc-91df-8638bd1a5228"",
             ""actions"": [
                 {
-                    ""name"": ""Rotate"",
+                    ""name"": ""Rotation"",
                     ""type"": ""PassThrough"",
                     ""id"": ""ffd7c01f-d776-44a8-a62a-52781bcc0514"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Selection"",
+                    ""type"": ""Button"",
+                    ""id"": ""c20c14aa-7a57-48c0-8dd4-8c3c41a1c9e6"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -37,18 +45,29 @@ namespace LevelMenu
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36a6747f-a3ff-4535-9a16-3dc75082f83e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""SceneNavigation"",
+            ""name"": ""SceneControl"",
             ""id"": ""2ece32ad-a9f0-42a7-805c-7f428a5d4e8e"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""6d75bec8-c8b3-41ef-8dd2-73bfd3544945"",
                     ""expectedControlType"": ""Vector2"",
@@ -64,18 +83,18 @@ namespace LevelMenu
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""InputSwitching"",
+            ""name"": ""Switching"",
             ""id"": ""543f73be-fd3b-4f1f-a587-05b2b645703c"",
             ""actions"": [
                 {
-                    ""name"": ""Select"",
+                    ""name"": ""Selection"",
                     ""type"": ""Button"",
                     ""id"": ""bc639b2e-e5fd-4632-85ea-218d4d4f26ff"",
                     ""expectedControlType"": ""Button"",
@@ -91,7 +110,7 @@ namespace LevelMenu
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Select"",
+                    ""action"": ""Selection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -100,15 +119,16 @@ namespace LevelMenu
     ],
     ""controlSchemes"": []
 }");
-            // CubeRotation
-            m_CubeRotation = asset.FindActionMap("CubeRotation", throwIfNotFound: true);
-            m_CubeRotation_Rotate = m_CubeRotation.FindAction("Rotate", throwIfNotFound: true);
-            // SceneNavigation
-            m_SceneNavigation = asset.FindActionMap("SceneNavigation", throwIfNotFound: true);
-            m_SceneNavigation_Move = m_SceneNavigation.FindAction("Move", throwIfNotFound: true);
-            // InputSwitching
-            m_InputSwitching = asset.FindActionMap("InputSwitching", throwIfNotFound: true);
-            m_InputSwitching_Select = m_InputSwitching.FindAction("Select", throwIfNotFound: true);
+            // CubeControl
+            m_CubeControl = asset.FindActionMap("CubeControl", throwIfNotFound: true);
+            m_CubeControl_Rotation = m_CubeControl.FindAction("Rotation", throwIfNotFound: true);
+            m_CubeControl_Selection = m_CubeControl.FindAction("Selection", throwIfNotFound: true);
+            // SceneControl
+            m_SceneControl = asset.FindActionMap("SceneControl", throwIfNotFound: true);
+            m_SceneControl_Movement = m_SceneControl.FindAction("Movement", throwIfNotFound: true);
+            // Switching
+            m_Switching = asset.FindActionMap("Switching", throwIfNotFound: true);
+            m_Switching_Selection = m_Switching.FindAction("Selection", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -155,115 +175,124 @@ namespace LevelMenu
             asset.Disable();
         }
 
-        // CubeRotation
-        private readonly InputActionMap m_CubeRotation;
-        private ICubeRotationActions m_CubeRotationActionsCallbackInterface;
-        private readonly InputAction m_CubeRotation_Rotate;
-        public struct CubeRotationActions
+        // CubeControl
+        private readonly InputActionMap m_CubeControl;
+        private ICubeControlActions m_CubeControlActionsCallbackInterface;
+        private readonly InputAction m_CubeControl_Rotation;
+        private readonly InputAction m_CubeControl_Selection;
+        public struct CubeControlActions
         {
             private @InputActions m_Wrapper;
-            public CubeRotationActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Rotate => m_Wrapper.m_CubeRotation_Rotate;
-            public InputActionMap Get() { return m_Wrapper.m_CubeRotation; }
+            public CubeControlActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Rotation => m_Wrapper.m_CubeControl_Rotation;
+            public InputAction @Selection => m_Wrapper.m_CubeControl_Selection;
+            public InputActionMap Get() { return m_Wrapper.m_CubeControl; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(CubeRotationActions set) { return set.Get(); }
-            public void SetCallbacks(ICubeRotationActions instance)
+            public static implicit operator InputActionMap(CubeControlActions set) { return set.Get(); }
+            public void SetCallbacks(ICubeControlActions instance)
             {
-                if (m_Wrapper.m_CubeRotationActionsCallbackInterface != null)
+                if (m_Wrapper.m_CubeControlActionsCallbackInterface != null)
                 {
-                    @Rotate.started -= m_Wrapper.m_CubeRotationActionsCallbackInterface.OnRotate;
-                    @Rotate.performed -= m_Wrapper.m_CubeRotationActionsCallbackInterface.OnRotate;
-                    @Rotate.canceled -= m_Wrapper.m_CubeRotationActionsCallbackInterface.OnRotate;
+                    @Rotation.started -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnRotation;
+                    @Rotation.performed -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnRotation;
+                    @Rotation.canceled -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnRotation;
+                    @Selection.started -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnSelection;
+                    @Selection.performed -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnSelection;
+                    @Selection.canceled -= m_Wrapper.m_CubeControlActionsCallbackInterface.OnSelection;
                 }
-                m_Wrapper.m_CubeRotationActionsCallbackInterface = instance;
+                m_Wrapper.m_CubeControlActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Rotate.started += instance.OnRotate;
-                    @Rotate.performed += instance.OnRotate;
-                    @Rotate.canceled += instance.OnRotate;
+                    @Rotation.started += instance.OnRotation;
+                    @Rotation.performed += instance.OnRotation;
+                    @Rotation.canceled += instance.OnRotation;
+                    @Selection.started += instance.OnSelection;
+                    @Selection.performed += instance.OnSelection;
+                    @Selection.canceled += instance.OnSelection;
                 }
             }
         }
-        public CubeRotationActions @CubeRotation => new CubeRotationActions(this);
+        public CubeControlActions @CubeControl => new CubeControlActions(this);
 
-        // SceneNavigation
-        private readonly InputActionMap m_SceneNavigation;
-        private ISceneNavigationActions m_SceneNavigationActionsCallbackInterface;
-        private readonly InputAction m_SceneNavigation_Move;
-        public struct SceneNavigationActions
+        // SceneControl
+        private readonly InputActionMap m_SceneControl;
+        private ISceneControlActions m_SceneControlActionsCallbackInterface;
+        private readonly InputAction m_SceneControl_Movement;
+        public struct SceneControlActions
         {
             private @InputActions m_Wrapper;
-            public SceneNavigationActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_SceneNavigation_Move;
-            public InputActionMap Get() { return m_Wrapper.m_SceneNavigation; }
+            public SceneControlActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_SceneControl_Movement;
+            public InputActionMap Get() { return m_Wrapper.m_SceneControl; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(SceneNavigationActions set) { return set.Get(); }
-            public void SetCallbacks(ISceneNavigationActions instance)
+            public static implicit operator InputActionMap(SceneControlActions set) { return set.Get(); }
+            public void SetCallbacks(ISceneControlActions instance)
             {
-                if (m_Wrapper.m_SceneNavigationActionsCallbackInterface != null)
+                if (m_Wrapper.m_SceneControlActionsCallbackInterface != null)
                 {
-                    @Move.started -= m_Wrapper.m_SceneNavigationActionsCallbackInterface.OnMove;
-                    @Move.performed -= m_Wrapper.m_SceneNavigationActionsCallbackInterface.OnMove;
-                    @Move.canceled -= m_Wrapper.m_SceneNavigationActionsCallbackInterface.OnMove;
+                    @Movement.started -= m_Wrapper.m_SceneControlActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_SceneControlActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_SceneControlActionsCallbackInterface.OnMovement;
                 }
-                m_Wrapper.m_SceneNavigationActionsCallbackInterface = instance;
+                m_Wrapper.m_SceneControlActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Move.started += instance.OnMove;
-                    @Move.performed += instance.OnMove;
-                    @Move.canceled += instance.OnMove;
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
                 }
             }
         }
-        public SceneNavigationActions @SceneNavigation => new SceneNavigationActions(this);
+        public SceneControlActions @SceneControl => new SceneControlActions(this);
 
-        // InputSwitching
-        private readonly InputActionMap m_InputSwitching;
-        private IInputSwitchingActions m_InputSwitchingActionsCallbackInterface;
-        private readonly InputAction m_InputSwitching_Select;
-        public struct InputSwitchingActions
+        // Switching
+        private readonly InputActionMap m_Switching;
+        private ISwitchingActions m_SwitchingActionsCallbackInterface;
+        private readonly InputAction m_Switching_Selection;
+        public struct SwitchingActions
         {
             private @InputActions m_Wrapper;
-            public InputSwitchingActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Select => m_Wrapper.m_InputSwitching_Select;
-            public InputActionMap Get() { return m_Wrapper.m_InputSwitching; }
+            public SwitchingActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Selection => m_Wrapper.m_Switching_Selection;
+            public InputActionMap Get() { return m_Wrapper.m_Switching; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(InputSwitchingActions set) { return set.Get(); }
-            public void SetCallbacks(IInputSwitchingActions instance)
+            public static implicit operator InputActionMap(SwitchingActions set) { return set.Get(); }
+            public void SetCallbacks(ISwitchingActions instance)
             {
-                if (m_Wrapper.m_InputSwitchingActionsCallbackInterface != null)
+                if (m_Wrapper.m_SwitchingActionsCallbackInterface != null)
                 {
-                    @Select.started -= m_Wrapper.m_InputSwitchingActionsCallbackInterface.OnSelect;
-                    @Select.performed -= m_Wrapper.m_InputSwitchingActionsCallbackInterface.OnSelect;
-                    @Select.canceled -= m_Wrapper.m_InputSwitchingActionsCallbackInterface.OnSelect;
+                    @Selection.started -= m_Wrapper.m_SwitchingActionsCallbackInterface.OnSelection;
+                    @Selection.performed -= m_Wrapper.m_SwitchingActionsCallbackInterface.OnSelection;
+                    @Selection.canceled -= m_Wrapper.m_SwitchingActionsCallbackInterface.OnSelection;
                 }
-                m_Wrapper.m_InputSwitchingActionsCallbackInterface = instance;
+                m_Wrapper.m_SwitchingActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Select.started += instance.OnSelect;
-                    @Select.performed += instance.OnSelect;
-                    @Select.canceled += instance.OnSelect;
+                    @Selection.started += instance.OnSelection;
+                    @Selection.performed += instance.OnSelection;
+                    @Selection.canceled += instance.OnSelection;
                 }
             }
         }
-        public InputSwitchingActions @InputSwitching => new InputSwitchingActions(this);
-        public interface ICubeRotationActions
+        public SwitchingActions @Switching => new SwitchingActions(this);
+        public interface ICubeControlActions
         {
-            void OnRotate(InputAction.CallbackContext context);
+            void OnRotation(InputAction.CallbackContext context);
+            void OnSelection(InputAction.CallbackContext context);
         }
-        public interface ISceneNavigationActions
+        public interface ISceneControlActions
         {
-            void OnMove(InputAction.CallbackContext context);
+            void OnMovement(InputAction.CallbackContext context);
         }
-        public interface IInputSwitchingActions
+        public interface ISwitchingActions
         {
-            void OnSelect(InputAction.CallbackContext context);
+            void OnSelection(InputAction.CallbackContext context);
         }
     }
 }

@@ -6,17 +6,17 @@ namespace LevelMenu
 	public class InputSwitcher : MonoBehaviour
 	{
 		[SerializeField] private new Camera camera;
-		[SerializeField] private SceneDragger sceneDragger;
+		[SerializeField] private SceneInput sceneInput;
 
 		private InputActions _inputActions;
-		private CubeRotator _currentCubeRotator;
+		private CubeInput _currentCubeInput;
 
 		private void Awake()
 		{
 			_inputActions = new InputActions();
 
-			_inputActions.InputSwitching.Select.performed += SwitchPerformed;
-			_inputActions.InputSwitching.Select.canceled += SwitchCanceled;
+			_inputActions.Switching.Selection.performed += SwitchPerformed;
+			_inputActions.Switching.Selection.canceled += SwitchCanceled;
 		}
 
 		private void OnEnable()
@@ -36,31 +36,31 @@ namespace LevelMenu
 
 			if (Physics.Raycast(ray, out var hit))
 			{
-				_currentCubeRotator = hit.collider.gameObject.GetComponent<CubeRotator>();
-				if (_currentCubeRotator != null)
+				_currentCubeInput = hit.collider.gameObject.GetComponent<CubeInput>();
+				if (_currentCubeInput != null)
 					giveInputToCube = true;
 			}
 
 			if (giveInputToCube)
 			{
-				_currentCubeRotator.EnableInput();
-				sceneDragger.DisableInput();
+				_currentCubeInput.EnableInput();
+				sceneInput.DisableInput();
 			}
 			else
 			{
-				sceneDragger.EnableInput();	
+				sceneInput.EnableInput();	
 			}
 		}
 
 		private void SwitchCanceled(InputAction.CallbackContext context)
 		{
-			if (_currentCubeRotator != null)
+			if (_currentCubeInput != null)
 			{
-				_currentCubeRotator.DisableInput();
-				_currentCubeRotator = null;
+				_currentCubeInput.DisableInput();
+				_currentCubeInput = null;
 			}
 
-			sceneDragger.DisableInput();
+			sceneInput.DisableInput();
 		}
 	}
 }

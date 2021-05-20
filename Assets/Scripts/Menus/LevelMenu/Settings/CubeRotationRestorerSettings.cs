@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace LevelMenu
 {
-	public class CubeRotatorSettings : MonoBehaviour
+	public class CubeRotationRestorerSettings : MonoBehaviour
 	{
-		public static CubeRotatorSettings Instance { get; private set; }
+		public static CubeRotationRestorerSettings Instance { get; private set; }
 
-		public float sensitivity;
+		public float speed;
 
 		private void Awake()
 		{

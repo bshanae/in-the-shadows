@@ -2,14 +2,22 @@
     "name": "LevelMenu",
     "maps": [
         {
-            "name": "CubeRotation",
+            "name": "CubeControl",
             "id": "39c86813-daee-4bfc-91df-8638bd1a5228",
             "actions": [
                 {
-                    "name": "Rotate",
+                    "name": "Rotation",
                     "type": "PassThrough",
                     "id": "ffd7c01f-d776-44a8-a62a-52781bcc0514",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "c20c14aa-7a57-48c0-8dd4-8c3c41a1c9e6",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -22,18 +30,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36a6747f-a3ff-4535-9a16-3dc75082f83e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "SceneNavigation",
+            "name": "SceneControl",
             "id": "2ece32ad-a9f0-42a7-805c-7f428a5d4e8e",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Movement",
                     "type": "PassThrough",
                     "id": "6d75bec8-c8b3-41ef-8dd2-73bfd3544945",
                     "expectedControlType": "Vector2",
@@ -49,18 +68,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "InputSwitching",
+            "name": "Switching",
             "id": "543f73be-fd3b-4f1f-a587-05b2b645703c",
             "actions": [
                 {
-                    "name": "Select",
+                    "name": "Selection",
                     "type": "Button",
                     "id": "bc639b2e-e5fd-4632-85ea-218d4d4f26ff",
                     "expectedControlType": "Button",
@@ -76,7 +95,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Select",
+                    "action": "Selection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,16 +4,20 @@ using UnityEngine.InputSystem;
 
 namespace LevelMenu
 {
-	public class CubeRotator : MonoBehaviour
+	[RequireComponent(typeof(CameraToCubeMover))]
+	public class CubeInput : MonoBehaviour
 	{
 		private InputActions _inputActions;
+		private CameraToCubeMover _cameraToCubeMover;
 
 		public bool IsEnabled => _inputActions.asset.enabled;
 
 		private void Awake()
 		{
 			_inputActions = new InputActions();
-			_inputActions.SceneNavigation.Move.performed += OnCubeRotated;
+			_inputActions.CubeControl.Rotation.performed += OnRotationPerformed;
+
+			_cameraToCubeMover = GetComponent<CameraToCubeMover>();
 		}
 
 		private void OnDisable()
@@ -29,18 +33,26 @@ namespace LevelMenu
 		public void DisableInput()
 		{
 			_inputActions.Disable();
+
+			// Mouse is released
+			TryMoveCameraToCube();
 		}
 
-		private void OnCubeRotated(InputAction.CallbackContext context)
+		private void OnRotationPerformed(InputAction.CallbackContext context)
 		{
 			var camera = Camera.main;
 			Assert.IsNotNull(camera);
 
-			var rotation = context.ReadValue<Vector2>() * CubeRotatorSettings.Instance.sensitivity;
+			var rotation = context.ReadValue<Vector2>() * CubeInputSettings.Instance.sensitivity;
 			var cameraTransform = camera.transform;
 
 			transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
 			transform.Rotate(cameraTransform.right, rotation.y, Space.World);
+		}
+
+		private void TryMoveCameraToCube()
+		{
+			_cameraToCubeMover.TryMoveCameraToCube();
 		}
 	}
 }
