@@ -1,0 +1,87 @@
+{
+    "name": "LevelMenu",
+    "maps": [
+        {
+            "name": "CubeRotation",
+            "id": "39c86813-daee-4bfc-91df-8638bd1a5228",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "PassThrough",
+                    "id": "ffd7c01f-d776-44a8-a62a-52781bcc0514",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "11f2b311-f018-4de7-9723-4da220615bb6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "SceneNavigation",
+            "id": "2ece32ad-a9f0-42a7-805c-7f428a5d4e8e",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "6d75bec8-c8b3-41ef-8dd2-73bfd3544945",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6ef74f30-20b6-4003-868c-2bd7853d44dd",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "InputSwitching",
+            "id": "543f73be-fd3b-4f1f-a587-05b2b645703c",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "bc639b2e-e5fd-4632-85ea-218d4d4f26ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ed4d4475-f777-4619-82ac-5c445aad5751",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

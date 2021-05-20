@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Menu
+namespace MainMenu
 {
 	[RequireComponent(typeof(CanvasGroup))]
 	public abstract class Page : MonoBehaviour

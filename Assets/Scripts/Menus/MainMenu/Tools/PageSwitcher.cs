@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Menu
+namespace MainMenu
 {
 	public class PageSwitcher : MonoBehaviour
 	{

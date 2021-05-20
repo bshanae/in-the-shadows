@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Menu
+namespace MainMenu
 {
 	public class MainPage : Page
 	{
