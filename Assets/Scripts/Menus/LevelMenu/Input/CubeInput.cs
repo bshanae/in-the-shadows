@@ -8,6 +8,7 @@ namespace LevelMenu
 	public class CubeInput : MonoBehaviour
 	{
 		private InputActions _inputActions;
+		private bool _didRotateLastTime;
 		private CameraToCubeMover _cameraToCubeMover;
 
 		public bool IsEnabled => _inputActions.asset.enabled;
@@ -27,6 +28,7 @@ namespace LevelMenu
 
 		public void EnableInput()
 		{
+			_didRotateLastTime = false;
 			_inputActions.Enable();
 		}
 
@@ -35,7 +37,8 @@ namespace LevelMenu
 			_inputActions.Disable();
 
 			// Mouse is released
-			TryMoveCameraToCube();
+			if (!_didRotateLastTime)
+				TryMoveCameraToCube();
 		}
 
 		private void OnRotationPerformed(InputAction.CallbackContext context)
@@ -44,10 +47,15 @@ namespace LevelMenu
 			Assert.IsNotNull(camera);
 
 			var rotation = context.ReadValue<Vector2>() * Settings.Instance.cubeInput.sensitivity;
+			if (Mathf.Approximately(rotation.x, 0) && Mathf.Approximately(rotation.y, 0))
+				return;
+
 			var cameraTransform = camera.transform;
 
 			transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
 			transform.Rotate(cameraTransform.right, rotation.y, Space.World);
+
+			_didRotateLastTime = true;
 		}
 
 		private void TryMoveCameraToCube()
