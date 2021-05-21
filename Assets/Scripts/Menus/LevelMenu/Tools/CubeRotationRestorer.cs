@@ -34,7 +34,7 @@ namespace LevelMenu
 					yield break;
 				}
 
-				progress += CubeRotationRestorerSettings.Instance.speed * Time.time;
+				progress += Settings.Instance.cubeRestorer.speed * Time.time;
 				transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, progress);
 
 				yield return null;

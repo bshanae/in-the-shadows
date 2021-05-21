@@ -43,7 +43,7 @@ namespace LevelMenu
 			var camera = Camera.main;
 			Assert.IsNotNull(camera);
 
-			var rotation = context.ReadValue<Vector2>() * CubeInputSettings.Instance.sensitivity;
+			var rotation = context.ReadValue<Vector2>() * Settings.Instance.cubeInput.sensitivity;
 			var cameraTransform = camera.transform;
 
 			transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
