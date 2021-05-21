@@ -20,14 +20,16 @@ namespace LevelMenu
 		}
 
 		[Serializable]
-		public struct CameraToCubeMover
+		public struct CubeHighlighter
 		{
-			public float speed;
+			[ColorUsage(false, true)] public Color startGlow;
+			[ColorUsage(false, true)] public Color finishGlow;
+			public float duration;
 		}
 
 		public CubeInput cubeInput;
 		public CubeRestorer cubeRestorer;
-		public CameraToCubeMover cameraToCubeMover;
+		public CubeHighlighter cubeHighlighter;
 
 		private void Awake()
 		{

@@ -5,11 +5,15 @@ using UnityEngine.InputSystem;
 namespace LevelMenu
 {
 	[RequireComponent(typeof(CameraToCubeMover))]
+	[RequireComponent(typeof(CubeHighlighter))]
 	public class CubeInput : MonoBehaviour
 	{
 		private InputActions _inputActions;
-		private bool _didRotateLastTime;
+
 		private CameraToCubeMover _cameraToCubeMover;
+		private CubeHighlighter _cubeHighlighter;
+
+		private bool _didRotateLastTime;
 
 		public bool IsEnabled => _inputActions.asset.enabled;
 
@@ -19,6 +23,7 @@ namespace LevelMenu
 			_inputActions.CubeControl.Rotation.performed += OnRotationPerformed;
 
 			_cameraToCubeMover = GetComponent<CameraToCubeMover>();
+			_cubeHighlighter = GetComponent<CubeHighlighter>();
 		}
 
 		private void OnDisable()
@@ -30,6 +35,8 @@ namespace LevelMenu
 		{
 			_didRotateLastTime = false;
 			_inputActions.Enable();
+
+			_cubeHighlighter.Highlight();
 		}
 
 		public void DisableInput()
@@ -39,6 +46,8 @@ namespace LevelMenu
 			// Mouse is released
 			if (!_didRotateLastTime)
 				TryMoveCameraToCube();
+
+			_cubeHighlighter.Unhighlight();
 		}
 
 		private void OnRotationPerformed(InputAction.CallbackContext context)
