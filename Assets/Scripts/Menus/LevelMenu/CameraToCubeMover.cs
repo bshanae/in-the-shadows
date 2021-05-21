@@ -5,18 +5,18 @@ namespace LevelMenu
 	[RequireComponent(typeof(Collider))]
 	public class CameraToCubeMover : MonoBehaviour
 	{
-		[SerializeField] private CameraMover cameraMover;
-
+		private CameraMover _cameraMover;
 		private Collider _collider;
 
 		private void Awake()
 		{
+			_cameraMover = Finder.FindCameraMover();
 			_collider = GetComponent<Collider>();
 		}
 
 		public void TryMoveCameraToCube()
 		{
-			cameraMover.MoveTo(_collider.bounds.center.x);
+			_cameraMover.MoveTo(_collider.bounds.center.x);
 		}
 	}
 }

@@ -5,14 +5,16 @@ namespace LevelMenu
 {
 	public class InputSwitcher : MonoBehaviour
 	{
-		[SerializeField] private new Camera camera;
 		[SerializeField] private SceneInput sceneInput;
 
+		private Camera _camera;
 		private InputActions _inputActions;
 		private CubeInput _currentCubeInput;
 
 		private void Awake()
 		{
+			_camera = Finder.FindCamera();
+
 			_inputActions = new InputActions();
 
 			_inputActions.Switching.Selection.performed += SwitchPerformed;
@@ -31,7 +33,7 @@ namespace LevelMenu
 
 		private void SwitchPerformed(InputAction.CallbackContext context)
 		{
-			var ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+			var ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 			var giveInputToCube = false;
 
 			if (Physics.Raycast(ray, out var hit))

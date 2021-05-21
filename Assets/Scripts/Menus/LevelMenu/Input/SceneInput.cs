@@ -6,13 +6,16 @@ namespace LevelMenu
 {
 	public class SceneInput : MonoBehaviour
 	{
-		[SerializeField] private CameraMover cameraMover;
+		
 		[SerializeField] private float speed;
 
+		private CameraMover _cameraMover;
 		private InputActions _inputActions;
 
 		private void Awake()
 		{
+			_cameraMover = Finder.FindCameraMover();
+
 			_inputActions = new InputActions();
 			_inputActions.SceneControl.Movement.performed += OnSceneMoved;
 		}
@@ -37,7 +40,7 @@ namespace LevelMenu
 			var mouseShift = context.ReadValue<Vector2>();
 			var xShift = -1f * mouseShift.x * speed;
 
-			cameraMover.MoveBy(xShift);
+			_cameraMover.MoveBy(xShift);
 		}
 	}
 }
