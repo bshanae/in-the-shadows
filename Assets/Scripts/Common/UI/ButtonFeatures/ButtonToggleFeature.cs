@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Common
+namespace Common.UI
 {
 	[RequireComponent(typeof(Button))]
 	[RequireComponent(typeof(Image))]
@@ -27,7 +27,7 @@ namespace Common
 			_state = !_state;
 
 			_image.sprite = pressedSprite;
-			_image.color = ButtonToggleFeatureSettings.Instance.onColor;
+			_image.color = Settings.Instance.buttonToggleFeature.onColor;
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
@@ -35,7 +35,7 @@ namespace Common
 			_image.sprite = defaultSprite;
 
 			if (!_state)
-				_image.color = ButtonToggleFeatureSettings.Instance.offColor;
+				_image.color = Settings.Instance.buttonToggleFeature.offColor;
 		}
 	}
 }

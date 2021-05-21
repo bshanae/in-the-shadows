@@ -8,6 +8,7 @@ namespace LevelMenu
 {
 	public class CameraMover : MonoBehaviour
 	{
+		[SerializeField] private float speed;
 		[SerializeField] private float leftBound;
 		[SerializeField] private float rightBound;
 		[SerializeField] private List<GameObject> accessories;
@@ -54,8 +55,6 @@ namespace LevelMenu
 
 		private IEnumerator MoveSelfAndAccessoriesByOffsetRoutine(float offset)
 		{
-			const float speed = 1f;
-
 			var targets = GetTargets(gameObject, accessories);
 			var originalPositions = GetOriginalPositions(targets);
 

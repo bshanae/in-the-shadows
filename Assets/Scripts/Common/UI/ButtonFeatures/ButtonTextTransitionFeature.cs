@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Common
+namespace Common.UI
 {
 	[RequireComponent(typeof(Button))]
 	public class ButtonTextTransitionFeature : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -12,13 +12,13 @@ namespace Common
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
-			text.font = ButtonTextTransitionFeatureSettings.Instance.pressedFont;
+			text.font = Settings.Instance.buttonTextTransitionFeature.pressedFont;
 			text.UpdateFontAsset();
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
-			text.font = ButtonTextTransitionFeatureSettings.Instance.defaultFont;
+			text.font = Settings.Instance.buttonTextTransitionFeature.defaultFont;
 			text.UpdateFontAsset();
 		}
 	}
