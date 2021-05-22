@@ -8,9 +8,16 @@ namespace LevelMenu
 		public static Settings Instance { get; private set; }
 
 		[Serializable]
-		public struct CubeInput
+		public struct CameraMover
+		{
+			public float threshold;
+		}
+
+		[Serializable]
+		public struct CubeRotator
 		{
 			public float sensitivity;
+			public float importanceThreshold;
 		}
 
 		[Serializable]
@@ -27,7 +34,8 @@ namespace LevelMenu
 			public float duration;
 		}
 
-		public CubeInput cubeInput;
+		public CameraMover cameraMover;
+		public CubeRotator cubeRotator;
 		public CubeRestorer cubeRestorer;
 		public CubeHighlighter cubeHighlighter;
 

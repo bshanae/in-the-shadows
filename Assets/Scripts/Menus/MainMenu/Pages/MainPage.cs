@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MainMenu
 {
@@ -10,7 +11,7 @@ namespace MainMenu
 		[UsedImplicitly]
 		private void PlayButtonPressed()
 		{
-			
+			SceneManager.LoadScene("LevelMenu");
 		}
 
 		[UsedImplicitly]

@@ -15,16 +15,19 @@ namespace LevelMenu
 
 		private Coroutine _coroutine;
 
+		public bool ShouldMoveTo(float newX)
+		{
+			return Mathf.Abs(newX - transform.position.x) > Settings.Instance.cameraMover.threshold;
+		}
+
 		public bool MoveTo(float newX)
 		{
+			var offset = newX - transform.position.x;
+
 			if (!CanSetAtX(newX))
 				return false;
 
-			if (_coroutine == null)
-			{
-				var offset = newX - transform.position.x;
-				_coroutine = StartCoroutine(MoveSelfAndAccessoriesByOffsetRoutine(offset));
-			}
+			_coroutine ??= StartCoroutine(MoveSelfAndAccessoriesByOffsetRoutine(offset));
 
 			return true;
 		}

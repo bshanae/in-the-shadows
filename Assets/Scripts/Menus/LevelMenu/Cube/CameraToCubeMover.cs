@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 
 namespace LevelMenu
@@ -10,13 +11,16 @@ namespace LevelMenu
 
 		private void Awake()
 		{
-			_cameraMover = Finder.FindCameraMover();
+			_cameraMover = Finder.FindCamera().GetComponent<CameraMover>();
 			_collider = GetComponent<Collider>();
 		}
 
-		public void TryMoveCameraToCube()
+		public bool TryMoveCameraToCube()
 		{
-			_cameraMover.MoveTo(_collider.bounds.center.x);
+			if (!_cameraMover.ShouldMoveTo(_collider.bounds.center.x))
+				return false;
+
+			return _cameraMover.MoveTo(_collider.bounds.center.x);
 		}
 	}
 }

@@ -1,3 +1,5 @@
+using Common;
+using Common.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,27 +10,32 @@ namespace LevelMenu
 		[SerializeField] private SceneInput sceneInput;
 
 		private Camera _camera;
-		private InputActions _inputActions;
+		private InputActionsWrapper<InputActions> _inputActionsWrapper;
 		private CubeInput _currentCubeInput;
 
 		private void Awake()
 		{
 			_camera = Finder.FindCamera();
 
-			_inputActions = new InputActions();
+			_inputActionsWrapper = new InputActionsWrapper<InputActions>();
 
-			_inputActions.Switching.Selection.performed += SwitchPerformed;
-			_inputActions.Switching.Selection.canceled += SwitchCanceled;
+			_inputActionsWrapper.InputActions.Switching.Selection.performed += SwitchPerformed;
+			_inputActionsWrapper.InputActions.Switching.Selection.canceled += SwitchCanceled;
+		}
+
+		private void Start()
+		{
+			_inputActionsWrapper.RegisterInInputManager();
 		}
 
 		private void OnEnable()
 		{
-			_inputActions.Enable();
+			_inputActionsWrapper.InputActions.Enable();
 		}
 
 		private void OnDisable()
 		{
-			_inputActions.Disable();
+			_inputActionsWrapper.InputActions.Disable();
 		}
 
 		private void SwitchPerformed(InputAction.CallbackContext context)
@@ -45,12 +52,12 @@ namespace LevelMenu
 
 			if (giveInputToCube)
 			{
-				_currentCubeInput.EnableInput();
-				sceneInput.DisableInput();
+				_currentCubeInput.Selected();
+				sceneInput.Unselected();
 			}
 			else
 			{
-				sceneInput.EnableInput();	
+				sceneInput.Selected();
 			}
 		}
 
@@ -58,11 +65,11 @@ namespace LevelMenu
 		{
 			if (_currentCubeInput != null)
 			{
-				_currentCubeInput.DisableInput();
+				_currentCubeInput.Unselected();
 				_currentCubeInput = null;
 			}
 
-			sceneInput.DisableInput();
+			sceneInput.Unselected();
 		}
 	}
 }
