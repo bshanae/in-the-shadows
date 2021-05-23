@@ -1,0 +1,71 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "Figure",
+            "id": "578ca402-445e-4cfa-a23d-e47fd1c28582",
+            "actions": [
+                {
+                    "name": "Rotation",
+                    "type": "PassThrough",
+                    "id": "a48135e5-e2c7-4e25-9186-17af56176a51",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Mode",
+                    "type": "Button",
+                    "id": "25a6b781-3c7f-448a-b5dc-c1ebcbeec143",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "80a4e1be-0f5f-468b-a4f6-2b29cba3b245",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2f0d5f6a-cf96-4fb8-912d-32d131651188",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4da350a-38b9-4966-8968-a81cd8cc4c39",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eed9b8d5-c12e-44ab-a3f0-ce02df78d437",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
