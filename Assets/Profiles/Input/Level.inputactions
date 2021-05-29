@@ -1,0 +1,125 @@
+{
+    "name": "Level",
+    "maps": [
+        {
+            "name": "FigureControl",
+            "id": "8f465ec3-1981-459c-9e5e-2282ee03e5b0",
+            "actions": [
+                {
+                    "name": "Rotation",
+                    "type": "PassThrough",
+                    "id": "5b4a0354-67ce-41ea-93fc-741dfb31a867",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "UseAlternativeRotation",
+                    "type": "Button",
+                    "id": "17ccd9be-1ce9-4408-a1e4-109f3eed0f86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dc5dd4de-3131-47a8-99bc-03de11387228",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0808147-842c-4008-9bef-66eb41372e24",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseAlternativeRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "FigureSetControl",
+            "id": "7bf498c7-d69c-499b-9784-735b7d3f9536",
+            "actions": [
+                {
+                    "name": "Rotation",
+                    "type": "PassThrough",
+                    "id": "be89c154-baab-4879-97f2-97928ce10142",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0121ed96-ab39-4448-ba5e-5448e3ed1687",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Switching",
+            "id": "ac609a7a-e11b-490d-b49e-597b582b9c93",
+            "actions": [
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "1a87fc00-e0d5-4f53-9011-4edb19fdbd2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SetSelection",
+                    "type": "Button",
+                    "id": "e67eb007-c8e5-410b-a9fd-42e101dcc70b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "daa29731-1c44-48d2-b137-a4316c87cccd",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2cba063-469d-43b0-8b7c-23d19905b158",
+                    "path": "<Keyboard>/leftMeta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

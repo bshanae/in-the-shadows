@@ -17,7 +17,7 @@ namespace LevelMenu
 
 		private void Update()
 		{
-			if (!_cubeInput.IsEnabled && !transform.rotation.IsZero() && _coroutine == null)
+			if (!_cubeInput.HaveFocus && !transform.rotation.IsZero() && _coroutine == null)
 				StartCoroutine(RestorationRoutine());
 		}
 
@@ -28,7 +28,7 @@ namespace LevelMenu
 
 			do
 			{
-				if (_cubeInput.IsEnabled)
+				if (_cubeInput.HaveFocus)
 				{
 					_coroutine = null;
 					yield break;

@@ -1,6 +1,6 @@
+using Common;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MainMenu
 {
@@ -9,19 +9,19 @@ namespace MainMenu
 		[SerializeReference] private Page settingsPage;
 
 		[UsedImplicitly]
-		private void PlayButtonPressed()
+		public void PlayButtonPressed()
 		{
-			SceneManager.LoadScene("LevelMenu");
+			Finder.FindSceneSwitcher().SwitchToScene("LevelMenu");
 		}
 
 		[UsedImplicitly]
-		private void SettingsButtonPressed()
+		public void SettingsButtonPressed()
 		{
 			PageSwitcher.Instance.Switch(this, settingsPage);
 		}
 
 		[UsedImplicitly]
-		private void ExitButtonPressed()
+		public void ExitButtonPressed()
 		{
 			Application.Quit();
 		}

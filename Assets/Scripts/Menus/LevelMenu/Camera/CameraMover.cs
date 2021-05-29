@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Common.Math;
 using UnityEngine;
 
@@ -11,87 +9,56 @@ namespace LevelMenu
 		[SerializeField] private float speed;
 		[SerializeField] private float leftBound;
 		[SerializeField] private float rightBound;
-		[SerializeField] private List<GameObject> accessories;
 
 		private Coroutine _coroutine;
 
-		public bool ShouldMoveTo(float newX)
+		public bool ShouldMoveTo(float newZ)
 		{
-			return Mathf.Abs(newX - transform.position.x) > Settings.Instance.cameraMover.threshold;
+			return Mathf.Abs(newZ - transform.position.z) > Settings.Instance.cameraMover.threshold;
 		}
 
-		public bool MoveTo(float newX)
+		public bool MoveTo(float newZ)
 		{
-			var offset = newX - transform.position.x;
+			var offset = newZ - transform.position.z;
 
-			if (!CanSetAtX(newX))
+			if (!CanSetAt(newZ))
 				return false;
 
-			_coroutine ??= StartCoroutine(MoveSelfAndAccessoriesByOffsetRoutine(offset));
+			_coroutine ??= StartCoroutine(MovementRoutine(offset));
 
 			return true;
 		}
 
 		public bool MoveBy(float offset)
 		{
-			var currentX = transform.position.x;
-
-			if (!CanSetAtX(currentX + offset))
+			if (!CanSetAt(transform.position.z + offset))
 				return false;
 
-			MoveSelfAndAccessoriesByOffset(offset);
+			transform.Translate(new Vector3(0, 0, offset), Space.World);
 			return true;
 		}
 
-		private bool CanSetAtX(float newX)
+		private bool CanSetAt(float newZ)
 		{
-			return newX >= leftBound && newX <= rightBound;
+			return newZ >= leftBound && newZ <= rightBound;
 		}
 
-		private void MoveSelfAndAccessoriesByOffset(float offset)
+		private IEnumerator MovementRoutine(float offset)
 		{
-			transform.Translate(offset, 0, 0);
-
-			foreach (var accessory in accessories)
-				accessory.transform.Translate(offset, 0, 0);
-		}
-
-		private IEnumerator MoveSelfAndAccessoriesByOffsetRoutine(float offset)
-		{
-			var targets = GetTargets(gameObject, accessories);
-			var originalPositions = GetOriginalPositions(targets);
+			var startPosition = gameObject.transform.position;
+			var finishPosition = startPosition.AddZ(offset);
 
 			var progress = 0f;
 
 			do
 			{
 				progress += speed * Time.deltaTime;
-
-				for (int i = 0; i < targets.Length; i++)
-				{
-					targets[i].position = Vector3.Lerp(
-						originalPositions[i],
-						originalPositions[i].AddX(offset),
-						progress);
-				}
+				gameObject.transform.position = Vector3.Lerp(startPosition, finishPosition, progress);
 
 				yield return null;
 			} while (progress < 1f);
 
 			_coroutine = null;
-
-			static Transform[] GetTargets(GameObject self, IEnumerable<GameObject> accessories)
-			{
-				var targets = new List<Transform> {self.transform};
-				targets.AddRange(accessories.Select(accessory => accessory.transform));
-
-				return targets.ToArray();
-			}
-
-			static Vector3[] GetOriginalPositions(Transform[] targets)
-			{
-				return targets.Select(target => target.position).ToArray();
-			}
 		}
 	}
 }

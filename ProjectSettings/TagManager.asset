@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - InputManager
   - SceneSwitcher
   layers:
   - Default
@@ -13,13 +12,13 @@ TagManager:
   - 
   - Water
   - UI
-  - FakeFigure
-  - RealFigure
-  - PhotoBackground
+  - 
+  - 
+  - PostProcessing
+  - Not in Reflection
   - 
   - 
   - 
-  - Postprocessing
   - 
   - 
   - 
@@ -42,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1936924373
     locked: 0

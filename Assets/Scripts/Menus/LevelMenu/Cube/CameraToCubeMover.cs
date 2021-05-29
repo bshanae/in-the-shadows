@@ -17,10 +17,12 @@ namespace LevelMenu
 
 		public bool TryMoveCameraToCube()
 		{
-			if (!_cameraMover.ShouldMoveTo(_collider.bounds.center.x))
+			var center = _collider.bounds.center.z;
+
+			if (!_cameraMover.ShouldMoveTo(center))
 				return false;
 
-			return _cameraMover.MoveTo(_collider.bounds.center.x);
+			return _cameraMover.MoveTo(center);
 		}
 	}
 }

@@ -29,8 +29,8 @@ namespace LevelMenu
 		[Serializable]
 		public struct CubeHighlighter
 		{
-			[ColorUsage(false, true)] public Color startGlow;
-			[ColorUsage(false, true)] public Color finishGlow;
+			[ColorUsage(false, true)] public Color startEmission;
+			[ColorUsage(false, true)] public Color finishEmission;
 			public float duration;
 		}
 
