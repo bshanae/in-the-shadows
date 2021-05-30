@@ -1,5 +1,5 @@
 using System.Collections;
-using Common.Math;
+using Common;
 using UnityEngine;
 
 namespace LevelMenu

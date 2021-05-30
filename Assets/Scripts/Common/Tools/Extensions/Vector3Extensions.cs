@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.Math
+namespace Common
 {
 	public static class Vector3Extensions
 	{

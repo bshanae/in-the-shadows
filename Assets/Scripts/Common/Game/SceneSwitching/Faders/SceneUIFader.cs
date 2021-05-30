@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Common
 {
-	public class SceneUIFader : MonoBehaviour, SceneFader
+	public class SceneUIFader : SceneFader
 	{
 		[SerializeField] private CanvasGroup rootCanvasGroup;
 
-		public IEnumerator FadingInRoutine(float duration)
+		protected override IEnumerator FadingInRoutine(float duration)
 		{
 			return FadingRoutine(0, 1, duration);
 		}
 
-		public IEnumerator FadingOutRoutine(float duration)
+		protected override IEnumerator FadingOutRoutine(float duration)
 		{
 			return FadingRoutine(1, 0, duration);
 		}
@@ -23,7 +23,7 @@ namespace Common
 
 			rootCanvasGroup.alpha = startAlpha;
 			
-			while (!Tools.HaveReachedValue(startAlpha, finishAlpha, rootCanvasGroup.alpha))
+			while (!MathTools.HaveReachedValue(startAlpha, finishAlpha, rootCanvasGroup.alpha))
 			{
 				rootCanvasGroup.alpha += step * Time.deltaTime;
 				yield return null;

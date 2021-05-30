@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,7 @@ namespace Common
 
 		private void Awake()
 		{
-			_sceneFaders = GetComponents<SceneFader>() ?? new SceneFader[] { };
+			_sceneFaders = GetComponents<SceneFader>() ?? new SceneFader[] {};
 
 			if (_sceneFaders.Length == 0)
 				Debug.Log($"Scene faders are not used in {name}");
@@ -22,15 +23,14 @@ namespace Common
 
 		private void Start()
 		{
-			StopAllCoroutines();
-			StartCoroutine(RunCoroutines(FadingType.FadeIn));
+			RunCoroutines(FadingType.FadeIn);
 		}
 
 		[UsedImplicitly]
 		public void SwitchToScene(string sceneName)
 		{
-			StopAllCoroutines();
-			StartCoroutine(RunCoroutines(FadingType.FadeOut, () => SceneManager.LoadScene(sceneName)));
+			RunCoroutines(FadingType.FadeOut);
+			WaitForFinish(() => SceneManager.LoadScene(sceneName));
 		}
 
 		private enum FadingType
@@ -39,31 +39,51 @@ namespace Common
 			FadeOut
 		}
 
-		private IEnumerator RunCoroutines(FadingType type, Action onFinish = null)
+		private void RunCoroutines(FadingType type)
 		{
-			foreach (var sceneFader in _sceneFaders)
+			switch (type)
 			{
-				switch (type)
+				case FadingType.FadeIn:
 				{
-					case FadingType.FadeIn:
-					{
-						StartCoroutine(sceneFader.FadingInRoutine(fadingDuration));
-						break;
-					}
+					foreach (var sceneFader in _sceneFaders)
+						sceneFader.FadeIn(GetDuration(sceneFader));
 
-					case FadingType.FadeOut:
-					{
-						StartCoroutine(sceneFader.FadingOutRoutine(fadingDuration));
-						break;
-					}
-
-					default:
-						throw new ArgumentOutOfRangeException(nameof(type), type, null);
+					break;
 				}
+
+				case FadingType.FadeOut:
+				{
+					foreach (var sceneFader in _sceneFaders)
+						sceneFader.FadeOut(GetDuration(sceneFader));
+
+					break;
+				}
+
+				default:
+					throw new ArgumentOutOfRangeException(nameof(type), type, null);
 			}
 
-			yield return new WaitForSeconds(fadingDuration);
-			onFinish?.Invoke();
+			float GetDuration(SceneFader sceneFader)
+			{
+				if (sceneFader.fadingDurationOverride != 0f)
+					return sceneFader.fadingDurationOverride;
+
+				return fadingDuration;
+			}
+		}
+
+		private void WaitForFinish(Action onFinish)
+		{
+			StopAllCoroutines();
+			StartCoroutine(Routine());
+		
+			IEnumerator Routine()
+			{
+				while (_sceneFaders.Any(sceneFader => sceneFader.IsRunning))
+					yield return null;
+
+				onFinish?.Invoke();
+			}
 		}
 	}
 }

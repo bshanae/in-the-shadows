@@ -6,26 +6,28 @@ namespace Common.UI
 {
 	[RequireComponent(typeof(Button))]
 	[RequireComponent(typeof(Image))]
-	public class ButtonImageTransitionFeature : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+	public class ButtonTogglingFeature : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
-		[SerializeField] private Sprite defaultSprite;
-		[SerializeField] private Sprite pressedSprite;
-
 		private Image _image;
+
+		public bool State { get; private set; }
 
 		private void Awake()
 		{
 			_image = GetComponent<Image>();
+			State = true;
 		}
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
-			_image.sprite = pressedSprite;
+			State = !State;
+			_image.color = ButtonTogglingFeatureSettings.Find().onColor;
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
-			_image.sprite = defaultSprite;
+			if (!State)
+				_image.color = ButtonTogglingFeatureSettings.Find().offColor;
 		}
 	}
 }

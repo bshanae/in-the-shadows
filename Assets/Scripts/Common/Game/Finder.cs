@@ -12,7 +12,15 @@ namespace Common
 			Assert.IsNotNull(camera);
 			return camera;
 		}
-		
+
+		public static T FindSettings<T>() where T : MonoBehaviour
+		{
+			var @object = GameObject.FindGameObjectWithTag("Settings");
+			var settings = @object.GetComponent<T>();
+
+			return settings;
+		}
+
 		public static SceneSwitcher FindSceneSwitcher()
 		{
 			var @object = GameObject.FindGameObjectWithTag("SceneSwitcher");

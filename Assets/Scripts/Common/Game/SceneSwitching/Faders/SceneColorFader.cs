@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 namespace Common
 {
-	public class SceneColorFader : MonoBehaviour, SceneFader
+	public class SceneColorFader : SceneFader
 	{
 		[SerializeField] private Color color;
 		[SerializeField] private Image overlay;
 
-		public IEnumerator FadingInRoutine(float duration)
+		protected override IEnumerator FadingInRoutine(float duration)
 		{
 			return FadingRoutine(1, 0, duration);
 		}
 
-		public IEnumerator FadingOutRoutine(float duration)
+		protected override IEnumerator FadingOutRoutine(float duration)
 		{
 			return FadingRoutine(0, 1, duration);
 		}
@@ -26,7 +26,7 @@ namespace Common
 			overlay.color = color;
 			overlay.color = overlay.color.SetAlpha(startAlpha);
 			
-			while (!Tools.HaveReachedValue(startAlpha, finishAlpha, overlay.color.a))
+			while (!MathTools.HaveReachedValue(startAlpha, finishAlpha, overlay.color.a))
 			{
 				overlay.color = overlay.color.AddAlpha(step * Time.deltaTime);
 				yield return null;

@@ -1,6 +1,6 @@
 namespace Common
 {
-	public static class Tools
+	public static class MathTools
 	{
 		public static bool HaveReachedValue(float start, float finish, float current)
 		{
