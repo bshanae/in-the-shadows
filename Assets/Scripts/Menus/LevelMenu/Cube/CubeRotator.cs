@@ -19,13 +19,13 @@ namespace LevelMenu
 		{
 			rotation = ApplySensitivity(rotation);
 
-			var threshold = Settings.Instance.cubeRotator.importanceThreshold;
+			var threshold = LevelMenuSettings.Instance.cubeRotator.importanceThreshold;
 			return Mathf.Abs(rotation.x) > threshold && Mathf.Abs(rotation.y) > threshold;
 		}
 
 		private static Vector2 ApplySensitivity(Vector2 rotation)
 		{
-			return rotation * Settings.Instance.cubeRotator.sensitivity;
+			return rotation * LevelMenuSettings.Instance.cubeRotator.sensitivity;
 		}
 	}
 }

@@ -24,7 +24,7 @@ namespace LevelMenu
 		
 		private void SetNameIfNeeded()
 		{
-			var text = Settings.Instance.levelNameSetter.levelName;
+			var text = LevelMenuSettings.Instance.levelNameSetter.levelName;
 
 			if (text.text != levelName)
 				text.text = levelName;

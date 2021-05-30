@@ -1,30 +1,26 @@
+using Common.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game
 {
-	public class FigureSetInput : MonoBehaviour
+	public class FigureSetInput : InputDelegate<InputActions>
 	{
-		private InputActions _inputActions;
+		[SerializeField] private FigureSetRotator figureSetRotator;
 
-		public bool HasFocus
+		protected override void Awake()
 		{
-			set => FocusChanged(value);
-		}		
-		
-		private void Awake()
-		{
-			_inputActions = new InputActions();
+			base.Awake();
+			inputActions.FigureSetControl.Rotation.performed += OnSetRotationPerformed;
 		}
 
-		private void OnEnable() => _inputActions.Enable();
-		private void OnDisable() => _inputActions.Disable();
-
-		private void FocusChanged(bool hasFocus)
+		private void OnSetRotationPerformed(InputAction.CallbackContext context)
 		{
-			if (hasFocus)
-				_inputActions.Enable();
-			else
-				_inputActions.Disable();
+			if (!HaveFocus)
+				return;
+
+			var mouseDelta = context.ReadValue<Vector2>();
+			figureSetRotator.Rotate(mouseDelta.y);
 		}
 	}
 }

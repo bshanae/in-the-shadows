@@ -1,13 +1,12 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace LevelMenu
 {
-	public class Settings : MonoBehaviour
+	public class LevelMenuSettings : MonoBehaviour
 	{
-		public static Settings Instance { get; private set; }
+		public static LevelMenuSettings Instance { get; private set; }
 
 		[Serializable]
 		public struct CameraMover

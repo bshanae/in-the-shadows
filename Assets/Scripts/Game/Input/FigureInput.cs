@@ -8,13 +8,18 @@ namespace Game
 	public class FigureInput : InputDelegate<InputActions>
 	{
 		private FigureRotator _figureRotator;
+		private bool _useAlternativeRotation;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
-			inputActions.FigureControl.Rotation.performed += OnFigureRotated;
 			_figureRotator = GetComponent<FigureRotator>();
+
+			inputActions.FigureControl.Rotation.performed += OnFigureRotated;
+			inputActions.FigureControl.UseAlternativeRotation.performed += OnUseAlternativeRotationPerformed;
+			inputActions.FigureControl.UseAlternativeRotation.canceled += OnUseAlternativeRotationCancelled;
+
 		}
 
 		private void OnFigureRotated(InputAction.CallbackContext context)
@@ -22,7 +27,22 @@ namespace Game
 			if (!HaveFocus)
 				return;
 
-			_figureRotator.Rotate(context.ReadValue<Vector2>());
+			var mouseDelta = context.ReadValue<Vector2>();
+			
+			if (!_useAlternativeRotation)
+				_figureRotator.Rotate(mouseDelta);
+			else
+				_figureRotator.RotateAlternatively(mouseDelta.y);
+		}
+
+		private void OnUseAlternativeRotationPerformed(InputAction.CallbackContext context)
+		{
+			_useAlternativeRotation = true;
+		}
+
+		private void OnUseAlternativeRotationCancelled(InputAction.CallbackContext context)
+		{
+			_useAlternativeRotation = false;
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace Game
 	{
 		public void Rotate(Vector2 value)
 		{
-			var rotation = value * Settings.Instance.figureRotator.sensitivity;
+			var rotation = value * LevelSettings.Instance.figureRotator.sensitivity;
 			var cameraTransform = Finder.FindCamera().transform;
 
 			transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
@@ -16,7 +16,8 @@ namespace Game
 
 		public void RotateAlternatively(float value)
 		{
-			transform.Rotate(new Vector3(1, 0, 0), -1f * value, Space.World);
+			var rotation = value * LevelSettings.Instance.figureRotator.sensitivity;
+			transform.Rotate(new Vector3(0, 0, 1), -1f * rotation, Space.World);
 		}
 	}
 }

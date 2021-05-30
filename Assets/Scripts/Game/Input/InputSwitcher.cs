@@ -11,7 +11,7 @@ namespace Game
 		private Camera _camera;
 		private InputActions _inputActions;
 
-		private bool _shouldSetSelected;
+		private bool _shouldSelectSet;
 		private FigureInput _focusedFigureInput;
 
 		private void Awake()
@@ -32,28 +32,30 @@ namespace Game
 
 		private void OnSelectionPerformed(InputAction.CallbackContext context)
 		{
-			if (_shouldSetSelected)
-				figureSetInput.HasFocus = true;
-
 			var ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-			if (Physics.Raycast(ray, out var hit))
+			if (!Physics.Raycast(ray, out var hit))
+				return;
+
+			var figureInput = hit.collider.gameObject.GetComponent<FigureInput>();
+			if (figureInput == null)
+				return;
+
+			if (_shouldSelectSet)
 			{
-				var figureInput = hit.collider.gameObject.GetComponent<FigureInput>();
-				if (figureInput != null)
-				{
-					figureInput.HaveFocus = true;
-					_focusedFigureInput = figureInput;
-				}
+				figureSetInput.HaveFocus = true;
+			}
+			else
+			{
+				figureInput.HaveFocus = true;
+				_focusedFigureInput = figureInput;
 			}
 		}
 
 		private void OnSelectionCancelled(InputAction.CallbackContext context)
 		{
-			if (_shouldSetSelected)
-			{
-				figureSetInput.HasFocus = false;
-			}
-			else if (_focusedFigureInput != null)
+			figureSetInput.HaveFocus = false;
+
+			if (_focusedFigureInput != null)
 			{
 				_focusedFigureInput.HaveFocus = false;
 				_focusedFigureInput = null;
@@ -62,12 +64,12 @@ namespace Game
 
 		private void OnSetSelectionPerformed(InputAction.CallbackContext context)
 		{
-			_shouldSetSelected = true;
+			_shouldSelectSet = true;
 		}
 
 		private void OnSetSelectionCancelled(InputAction.CallbackContext context)
 		{
-			_shouldSetSelected = false;
+			_shouldSelectSet = false;
 		}
 	}
 }

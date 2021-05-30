@@ -527,6 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 112853686}
   - component: {fileID: 112853687}
+  - component: {fileID: 112853688}
   m_Layer: 0
   m_Name: Settings
   m_TagString: Settings
@@ -561,6 +562,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+--- !u!114 &112853688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112853685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679408f2aca6476ca775833a30b8cd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  figureRotator:
+    sensitivity: 1
+  figureSetRotator:
+    sensitivity: 1
 --- !u!1 &137152246
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +833,7 @@ GameObject:
   - component: {fileID: 310371346}
   - component: {fileID: 310371348}
   - component: {fileID: 310371347}
+  - component: {fileID: 310371349}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -849,6 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02ae19b7fee4833bee0eb476b3b6bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  figureSetRotator: {fileID: 881444922}
 --- !u!114 &310371348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,6 +881,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figureSetInput: {fileID: 310371347}
+--- !u!114 &310371349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310371345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3642585826f44a19ac4616ba095a1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369820690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,6 +2488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881444921}
+  - component: {fileID: 881444922}
   m_Layer: 0
   m_Name: FigureSet
   m_TagString: Untagged
@@ -2480,6 +2512,18 @@ Transform:
   m_Father: {fileID: 1433840266}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.729}
+--- !u!114 &881444922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881444920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3642585826f44a19ac4616ba095a1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &910663474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4412,19 +4456,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 14.096223
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 14.096223
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 14.096223
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4444,23 +4488,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 113a2ecf9b7d441538995fba365e58b9, type: 3}
       propertyPath: m_RenderingLayerMask

@@ -14,7 +14,7 @@ namespace LevelMenu
 
 		public bool ShouldMoveTo(float newZ)
 		{
-			return Mathf.Abs(newZ - transform.position.z) > Settings.Instance.cameraMover.threshold;
+			return Mathf.Abs(newZ - transform.position.z) > LevelMenuSettings.Instance.cameraMover.threshold;
 		}
 
 		public bool MoveTo(float newZ)

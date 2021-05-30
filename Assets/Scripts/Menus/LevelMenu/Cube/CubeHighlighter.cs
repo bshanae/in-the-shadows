@@ -17,13 +17,13 @@ namespace LevelMenu
 		public void Highlight()
 		{
 			StopAllCoroutines();
-			StartCoroutine(HighlightingRoutine(Settings.Instance.cubeHighlighter.finishEmission));
+			StartCoroutine(HighlightingRoutine(LevelMenuSettings.Instance.cubeHighlighter.finishEmission));
 		}
 
 		public void Unhighlight()
 		{
 			StopAllCoroutines();
-			StartCoroutine(HighlightingRoutine(Settings.Instance.cubeHighlighter.startEmission));
+			StartCoroutine(HighlightingRoutine(LevelMenuSettings.Instance.cubeHighlighter.startEmission));
 		}
 
 		private IEnumerator HighlightingRoutine(Color targetColor)
@@ -35,7 +35,7 @@ namespace LevelMenu
 
 			do
 			{
-				progress += Time.deltaTime / Settings.Instance.cubeHighlighter.duration;
+				progress += Time.deltaTime / LevelMenuSettings.Instance.cubeHighlighter.duration;
 
 				var color = Color.Lerp(startColor, finishColor, progress);
 				_material.SetColor(EmissiveColor, color.linear);
