@@ -1,4 +1,5 @@
 using Common.Input;
+using Level;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,7 @@ namespace Game
 				return;
 
 			var mouseDelta = context.ReadValue<Vector2>();
-			figureSetRotator.Rotate(mouseDelta.y);
+			figureSetRotator.Rotate(mouseDelta.x);
 		}
 	}
 }

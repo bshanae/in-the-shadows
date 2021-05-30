@@ -1,8 +1,9 @@
 using Common;
+using Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Game
+namespace Level
 {
 	public class InputSwitcher : MonoBehaviour
 	{
@@ -32,6 +33,12 @@ namespace Game
 
 		private void OnSelectionPerformed(InputAction.CallbackContext context)
 		{
+			if (_shouldSelectSet)
+			{
+				figureSetInput.HaveFocus = true;
+				return;
+			}
+
 			var ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 			if (!Physics.Raycast(ray, out var hit))
 				return;
@@ -40,15 +47,8 @@ namespace Game
 			if (figureInput == null)
 				return;
 
-			if (_shouldSelectSet)
-			{
-				figureSetInput.HaveFocus = true;
-			}
-			else
-			{
-				figureInput.HaveFocus = true;
-				_focusedFigureInput = figureInput;
-			}
+			figureInput.HaveFocus = true;
+			_focusedFigureInput = figureInput;
 		}
 
 		private void OnSelectionCancelled(InputAction.CallbackContext context)

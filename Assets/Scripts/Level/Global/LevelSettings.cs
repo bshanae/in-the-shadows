@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game
+namespace Level
 {
 	public class LevelSettings : MonoBehaviour
 	{
@@ -18,9 +18,23 @@ namespace Game
 		{
 			public float sensitivity;
 		}
+	
+		[Serializable]
+		public struct FigureRotationSupervisor
+		{
+			public Vector3 threshold;
+		}
+
+		[Serializable]
+		public struct FigureSetRotationSupervisor
+		{
+			public float threshold;
+		}
 
 		public FigureRotator figureRotator; 
-		public FigureSetRotator figureSetRotator; 
+		public FigureSetRotator figureSetRotator;
+		public FigureRotationSupervisor figureRotationSupervisor;
+		public FigureSetRotationSupervisor figureSetRotationSupervisor;
 
 		private void Awake()
 		{

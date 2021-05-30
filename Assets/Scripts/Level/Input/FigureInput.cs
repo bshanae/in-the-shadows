@@ -2,7 +2,7 @@ using Common.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Game
+namespace Level
 {
 	[RequireComponent(typeof(FigureRotator))]
 	public class FigureInput : InputDelegate<InputActions>

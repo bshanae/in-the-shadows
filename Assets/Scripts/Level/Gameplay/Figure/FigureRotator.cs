@@ -1,7 +1,7 @@
 using Common;
 using UnityEngine;
 
-namespace Game
+namespace Level
 {
 	public class FigureRotator : MonoBehaviour
 	{
@@ -9,7 +9,7 @@ namespace Game
 		{
 			var rotation = value * LevelSettings.Instance.figureRotator.sensitivity;
 			var cameraTransform = Finder.FindCamera().transform;
-
+			
 			transform.Rotate(cameraTransform.up, -1f * rotation.x, Space.World);
 			transform.Rotate(cameraTransform.right, rotation.y, Space.World);
 		}
