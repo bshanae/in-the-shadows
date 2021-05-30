@@ -7,13 +7,13 @@ namespace LevelMenu
 	[RequireComponent(typeof(CubeRotator))]
 	[RequireComponent(typeof(CameraToCubeMover))]
 	[RequireComponent(typeof(CubeHighlighter))]
-	[RequireComponent(typeof(CubeLevelOpener))]
+	[RequireComponent(typeof(LevelOpener))]
 	public class CubeInput : InputDelegate<InputActions>
 	{
 		private CubeRotator _cubeRotator;
 		private CameraToCubeMover _cameraToCubeMover;
 		private CubeHighlighter _highlighter;
-		private CubeLevelOpener _levelOpener;
+		private LevelOpener _levelOpener;
 
 		private Vector2 _totalRotationThisTime;
 
@@ -26,7 +26,7 @@ namespace LevelMenu
 			_cubeRotator = GetComponent<CubeRotator>();
 			_cameraToCubeMover = GetComponent<CameraToCubeMover>();
 			_highlighter = GetComponent<CubeHighlighter>();
-			_levelOpener = GetComponent<CubeLevelOpener>();
+			_levelOpener = GetComponent<LevelOpener>();
 		}
 
 		protected override void ReceivedFocus()
@@ -62,7 +62,7 @@ namespace LevelMenu
 
 		private bool TryMoveCameraToCube()
 		{
-			return _cameraToCubeMover.TryMoveCameraToCube();
+			return _cameraToCubeMover.TryMoveCamera();
 		}
 	}
 }

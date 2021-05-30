@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LevelMenu
 {
-	public class CubeLevelOpener : MonoBehaviour
+	public class LevelOpener : MonoBehaviour
 	{
 		public void OpenLevel()
 		{

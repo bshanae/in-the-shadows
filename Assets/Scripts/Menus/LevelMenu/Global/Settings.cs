@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LevelMenu
 {
@@ -31,13 +33,21 @@ namespace LevelMenu
 		{
 			[ColorUsage(false, true)] public Color startEmission;
 			[ColorUsage(false, true)] public Color finishEmission;
+
 			public float duration;
+		}
+
+		[Serializable]
+		public struct LevelNameSetter
+		{
+			public TextMeshProUGUI levelName;
 		}
 
 		public CameraMover cameraMover;
 		public CubeRotator cubeRotator;
 		public CubeRestorer cubeRestorer;
 		public CubeHighlighter cubeHighlighter;
+		public LevelNameSetter levelNameSetter;
 
 		private void Awake()
 		{

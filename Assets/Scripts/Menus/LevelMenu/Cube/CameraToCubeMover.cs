@@ -15,7 +15,13 @@ namespace LevelMenu
 			_collider = GetComponent<Collider>();
 		}
 
-		public bool TryMoveCameraToCube()
+		public bool ShouldMoveCamera()
+		{
+			var center = _collider.bounds.center.z;
+			return _cameraMover.ShouldMoveTo(center);
+		}
+
+		public bool TryMoveCamera()
 		{
 			var center = _collider.bounds.center.z;
 
