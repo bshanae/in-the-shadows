@@ -1,35 +1,32 @@
 using Common;
+using Common.Input;
 using Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Level
 {
-	public class InputSwitcher : MonoBehaviour
+	public class InputSwitcher : InputDelegate<InputActions>
 	{
 		[SerializeField] private FigureSetInput figureSetInput;
 
 		private Camera _camera;
-		private InputActions _inputActions;
 
 		private bool _shouldSelectSet;
 		private FigureInput _focusedFigureInput;
 
-		private void Awake()
+		protected override void Awake()
 		{
+			base.Awake();
+
 			_camera = Finder.FindCamera();
 
-			_inputActions = new InputActions();
+			inputActions.Switching.Selection.performed += OnSelectionPerformed;
+			inputActions.Switching.Selection.canceled += OnSelectionCancelled;
 
-			_inputActions.Switching.Selection.performed += OnSelectionPerformed;
-			_inputActions.Switching.Selection.canceled += OnSelectionCancelled;
-
-			_inputActions.Switching.SetSelection.performed += OnSetSelectionPerformed;
-			_inputActions.Switching.SetSelection.canceled += OnSetSelectionCancelled;
+			inputActions.Switching.SetSelection.performed += OnSetSelectionPerformed;
+			inputActions.Switching.SetSelection.canceled += OnSetSelectionCancelled;
 		}
-
-		private void OnEnable() => _inputActions.Enable();
-		private void OnDisable() => _inputActions.Disable();
 
 		private void OnSelectionPerformed(InputAction.CallbackContext context)
 		{

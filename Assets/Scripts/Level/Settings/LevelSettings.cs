@@ -20,21 +20,23 @@ namespace Level
 		}
 	
 		[Serializable]
-		public struct FigureRotationSupervisor
+		public struct FigureSolver
 		{
-			public Vector3 threshold;
+			public float threshold;
+			public float exactSolutionAnimationDuration;
 		}
 
 		[Serializable]
-		public struct FigureSetRotationSupervisor
+		public struct FigureSetSolver
 		{
 			public float threshold;
+			public float exactSolutionAnimationDuration;
 		}
 
 		public FigureRotator figureRotator; 
 		public FigureSetRotator figureSetRotator;
-		public FigureRotationSupervisor figureRotationSupervisor;
-		public FigureSetRotationSupervisor figureSetRotationSupervisor;
+		public FigureSolver figureSolver;
+		public FigureSetSolver figureSetSolver;
 
 		private void Awake()
 		{

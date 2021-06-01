@@ -1,3 +1,4 @@
+using Common.Input;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -19,6 +20,11 @@ namespace Common
 			var settings = @object.GetComponent<T>();
 
 			return settings;
+		}
+
+		public static InputDelegate[] FindInputDelegates()
+		{
+			return Object.FindObjectsOfType<InputDelegate>();
 		}
 
 		public static SceneSwitcher FindSceneSwitcher()

@@ -23,6 +23,7 @@ namespace LevelMenu
 
 		private IEnumerator RestorationRoutine()
 		{
+			var startRotation = transform.rotation;
 			var targetRotation = Quaternion.Euler(0, 0, 0);
 			var progress = 0f;
 
@@ -35,7 +36,7 @@ namespace LevelMenu
 				}
 
 				progress += LevelMenuSettings.Instance.cubeRestorer.speed * Time.time;
-				transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, progress);
+				transform.rotation = Quaternion.Slerp(startRotation, targetRotation, progress);
 
 				yield return null;
 			} while (progress <= 1f);

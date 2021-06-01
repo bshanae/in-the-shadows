@@ -21,7 +21,7 @@ namespace Game
 				return;
 
 			var mouseDelta = context.ReadValue<Vector2>();
-			figureSetRotator.Rotate(mouseDelta.x);
+			figureSetRotator.Rotate(mouseDelta.x + mouseDelta.y);
 		}
 	}
 }
