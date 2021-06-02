@@ -1,11 +1,15 @@
-using Common.Input;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Object = UnityEngine.Object;
 
 namespace Common
 {
 	public static class Finder
 	{
+		public class MandatoryObjectNotFound : Exception {}
+
 		public static Camera FindCamera()
 		{
 			var camera = Camera.main;
@@ -14,26 +18,24 @@ namespace Common
 			return camera;
 		}
 
-		public static T FindSettings<T>() where T : MonoBehaviour
+		public static T Find<T>() where T : MonoBehaviour
 		{
-			var @object = GameObject.FindGameObjectWithTag("Settings");
-			var settings = @object.GetComponent<T>();
-
-			return settings;
+			return Object.FindObjectsOfType<T>().FirstOrDefault();
 		}
 
-		public static InputDelegate[] FindInputDelegates()
+		public static T FindMandatory<T>() where T : MonoBehaviour
 		{
-			return Object.FindObjectsOfType<InputDelegate>();
+			var @object = Object.FindObjectsOfType<T>().FirstOrDefault();
+
+			if (@object == null)
+				throw new MandatoryObjectNotFound();
+
+			return @object;
 		}
 
-		public static SceneSwitcher FindSceneSwitcher()
+		public static T[] FindAll<T>() where T : MonoBehaviour
 		{
-			var @object = GameObject.FindGameObjectWithTag("SceneSwitcher");
-			var sceneSwitcher = @object.GetComponent<SceneSwitcher>();
-
-			Assert.IsNotNull(sceneSwitcher);
-			return sceneSwitcher;
+			return Object.FindObjectsOfType<T>();
 		}
 	}
 }

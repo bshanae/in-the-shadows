@@ -11,7 +11,14 @@ namespace MainMenu
 		[UsedImplicitly]
 		public void PlayButtonPressed()
 		{
-			Finder.FindSceneSwitcher().SwitchToScene("LevelMenu");
+			try
+			{
+				Finder.FindMandatory<SceneSwitcher>().SwitchToScene("LevelMenu");
+			}
+			catch (Finder.MandatoryObjectNotFound)
+			{
+				Debug.LogError("Can't find scene switcher!");
+			}
 		}
 
 		[UsedImplicitly]

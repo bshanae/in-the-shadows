@@ -6,7 +6,15 @@ namespace Common
 	{
 		public static T Find()
 		{
-			return Finder.FindSettings<T>();
+			try
+			{
+				return Finder.FindMandatory<T>();
+			}
+			catch (Finder.MandatoryObjectNotFound)
+			{
+				Debug.LogError("Settings instance is not found!");
+				return null;
+			}
 		}
 	}
 }

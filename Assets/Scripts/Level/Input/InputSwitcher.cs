@@ -8,10 +8,10 @@ namespace Level
 {
 	public class InputSwitcher : InputDelegate<InputActions>
 	{
-		[SerializeField] private FigureSetInput figureSetInput;
-
+		private FigureSetInput _figureSetInput;
 		private Camera _camera;
 
+		private bool _isFigureLoaded;
 		private bool _shouldSelectSet;
 		private FigureInput _focusedFigureInput;
 
@@ -21,6 +21,10 @@ namespace Level
 
 			_camera = Finder.FindCamera();
 
+			var figureLoader = Finder.Find<FigureLoader>();
+			if (figureLoader != null)
+				figureLoader.FigureLoaded += OnFigureLoaded;
+
 			inputActions.Switching.Selection.performed += OnSelectionPerformed;
 			inputActions.Switching.Selection.canceled += OnSelectionCancelled;
 
@@ -28,11 +32,27 @@ namespace Level
 			inputActions.Switching.SetSelection.canceled += OnSetSelectionCancelled;
 		}
 
+		private void OnDestroy()
+		{
+			var figureLoader = Finder.Find<FigureLoader>();
+			if (figureLoader != null)
+				figureLoader.FigureLoaded -= OnFigureLoaded;
+		}
+
+		private void OnFigureLoaded()
+		{
+			_figureSetInput = Finder.Find<FigureSetInput>();
+			_isFigureLoaded = true;
+		}
+
 		private void OnSelectionPerformed(InputAction.CallbackContext context)
 		{
-			if (_shouldSelectSet)
+			if (!_isFigureLoaded)
+				return;
+
+			if (_shouldSelectSet && _figureSetInput != null)
 			{
-				figureSetInput.HaveFocus = true;
+				_figureSetInput.HaveFocus = true;
 				return;
 			}
 
@@ -50,7 +70,8 @@ namespace Level
 
 		private void OnSelectionCancelled(InputAction.CallbackContext context)
 		{
-			figureSetInput.HaveFocus = false;
+			if (_figureSetInput != null)
+				_figureSetInput.HaveFocus = false;
 
 			if (_focusedFigureInput != null)
 			{

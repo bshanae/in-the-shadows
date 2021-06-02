@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,12 +12,32 @@ namespace Common
 
 		private SceneFader[] _sceneFaders;
 
+		public SceneMeta MetaOfThisScene { get; private set;  }
+		public SceneMeta MetaOfNextScene { get; private set;  }
+
 		private void Awake()
 		{
-			_sceneFaders = GetComponents<SceneFader>() ?? new SceneFader[] {};
+			ProcessFaders();
+			ProcessMetas();
 
-			if (_sceneFaders.Length == 0)
-				Debug.Log($"Scene faders are not used in {name}");
+			void ProcessFaders()
+			{
+				_sceneFaders = GetComponents<SceneFader>() ?? new SceneFader[] {};
+
+				if (_sceneFaders.Length == 0)
+					Debug.Log($"Scene faders are not used in {name}");
+			}
+
+			void ProcessMetas()
+			{
+				var courier = SceneMetaCourier.Instance;
+
+				if (courier == null)
+					return;
+
+				MetaOfThisScene = courier.SceneMeta ?? new SceneMeta();
+				MetaOfNextScene = courier.SceneMeta = new SceneMeta();
+			}
 		}
 
 		private void Start()
@@ -26,7 +45,6 @@ namespace Common
 			RunCoroutines(FadingType.FadeIn);
 		}
 
-		[UsedImplicitly]
 		public void SwitchToScene(string sceneName)
 		{
 			RunCoroutines(FadingType.FadeOut);

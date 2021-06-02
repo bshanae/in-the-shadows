@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Common;
 using Common.Input;
 using Common.UI;
 using UnityEngine;
@@ -9,20 +10,22 @@ namespace Level
 {
 	public class LevelSolver : MonoBehaviour
 	{
-		[SerializeField] private FigureSetSolver figureSet;
-		[SerializeField] private FigureSolver[] figures;
 		[SerializeField] private ButtonLockableFeature nextLevelButton;
 
-		private bool _waitingForSolution;
+		private FigureSetSolver _figureSet;
+		private FigureSolver[] _figures;
+
+		private bool _areFiguresLoaded;
+		private bool _isWaitingForSolution;
 
 		private bool IsSolved
 		{
 			get
 			{
-				if (figureSet != null && !figureSet.IsSolved)
+				if (_figureSet != null && !_figureSet.IsSolved)
 					return false;
 
-				return figures.All(figure => figure.IsSolved);
+				return _figures.All(figure => figure.IsSolved);
 			}
 		}
 
@@ -30,30 +33,53 @@ namespace Level
 		{
 			get
 			{
-				if (figureSet != null && figureSet.IsBusy)
+				if (_figureSet != null && _figureSet.IsBusy)
 					return true;
 
-				return figures.Any(figure => figure.IsBusy);
+				return _figures.Any(figure => figure.IsBusy);
 			}
 		}
 
+		private bool ShouldTryToSolve => _areFiguresLoaded && _isWaitingForSolution; 
+
 		private void Awake()
 		{
-			_waitingForSolution = true;
+			_isWaitingForSolution = true;
+
+			var figureLoader = Finder.Find<FigureLoader>();
+
+			if (figureLoader != null)
+				figureLoader.FigureLoaded += OnFigureLoaded;
+		}
+
+		private void OnDestroy()
+		{
+			var figureLoader = Finder.Find<FigureLoader>();
+
+			if (figureLoader != null)
+				figureLoader.FigureLoaded -= OnFigureLoaded;
 		}
 
 		private void Update()
 		{
-			if (_waitingForSolution && IsSolved)
+			if (ShouldTryToSolve && IsSolved)
 			{
-				_waitingForSolution = false;
+				_isWaitingForSolution = false;
 				ShowExactSolution(() => nextLevelButton.IsLocked = false);
 			}
 		}
 
+		private void OnFigureLoaded()
+		{
+			_figureSet = Finder.Find<FigureSetSolver>();
+			_figures = Finder.FindAll<FigureSolver>();
+
+			_areFiguresLoaded = true;
+		}
+
 		public void SolveAutomatically()
 		{
-			_waitingForSolution = false;
+			_isWaitingForSolution = false;
 			ShowExactSolution(() => nextLevelButton.IsLocked = false);
 		}
 
@@ -65,10 +91,10 @@ namespace Level
 			{
 				InputTools.DisableAllInput();
 
-				if (figureSet != null)
-					figureSet.ShowExactSolution();
+				if (_figureSet != null)
+					_figureSet.ShowExactSolution();
 
-				foreach (var figure in figures)
+				foreach (var figure in _figures)
 					figure.ShowExactSolution();
 
 				while (IsBusy)
