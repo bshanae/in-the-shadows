@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefaf5097962242008744d691fad3506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figurePrefabName: 42
+  figurePrefabName: Globe
 --- !u!114 &1984879847
 MonoBehaviour:
   m_ObjectHideFlags: 0

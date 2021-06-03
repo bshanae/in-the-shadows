@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Common.Debugging
 {
+	[RequireComponent(typeof(RotationHelper))]
 	[RequireComponent(typeof(FigureSolver))]
-	public class FigureSolverReporter : MonoBehaviour
+	public class FigureHelper : MonoBehaviour
 	{
 		[SerializeField] private bool isSolved;
 
@@ -18,6 +19,11 @@ namespace Common.Debugging
 		private void Update()
 		{
 			isSolved = _figureSolver.IsSolved;
+		}
+
+		public void Solve()
+		{
+			_figureSolver.ShowExactSolution();
 		}
 	}
 }

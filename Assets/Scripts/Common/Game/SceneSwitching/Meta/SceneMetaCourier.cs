@@ -12,7 +12,9 @@ namespace Common
 			{
 				if (_instance == null)
 				{
-					var gameObject = new GameObject {hideFlags = HideFlags.DontSave};
+					var gameObject = new GameObject("SceneMetaCourier");
+					gameObject.hideFlags = HideFlags.DontSave;
+
 					_instance = gameObject.AddComponent<SceneMetaCourier>();
 				}
 

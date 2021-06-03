@@ -21,12 +21,17 @@ namespace Level
 
 		private void TryInstantiatePrefab()
 		{
-			var prefab = Resources.Load<GameObject>($"{PrefabFolder}/{GetFigurePrefabName()}");
+			var name = GetFigurePrefabName();
+			var prefab = Resources.Load<GameObject>($"{PrefabFolder}/{name}");
 
 			if (prefab != null)
 			{
 				Instantiate<Object>(prefab, figureParent.transform);
 				FigureLoaded?.Invoke();
+			}
+			else
+			{
+				Debug.LogError($"Prefab {name} not found!");
 			}
 		}
 

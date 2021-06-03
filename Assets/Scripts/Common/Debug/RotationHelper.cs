@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Common.Debugging
 {
-	public class RotationReporter : MonoBehaviour
+	[ExecuteInEditMode]
+	public class RotationHelper : MonoBehaviour
 	{
 		[SerializeField] private Vector3 globalRotation;
 		[SerializeField] private Vector3 localRotation;
