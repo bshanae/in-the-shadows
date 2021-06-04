@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Common.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ namespace Common
 		[SerializeField] private float fadingDuration;
 
 		private SceneFader[] _sceneFaders;
+		private bool _isBusy;
 
 		public SceneMeta MetaOfThisScene { get; private set;  }
 		public SceneMeta MetaOfNextScene { get; private set;  }
@@ -42,13 +44,39 @@ namespace Common
 
 		private void Start()
 		{
-			RunCoroutines(FadingType.FadeIn);
+			if (_isBusy)
+				return;
+
+			_isBusy = true;
+			InputTools.DisableAllInput();
+
+			StartFadingCoroutines(FadingType.FadeIn);
+			WaitForFadingCoroutinesFinish(AfterFinish);
+
+			void AfterFinish()
+			{
+				InputTools.EnableAllInput();
+				_isBusy = false;
+			}
 		}
 
 		public void SwitchToScene(string sceneName)
 		{
-			RunCoroutines(FadingType.FadeOut);
-			WaitForFinish(() => SceneManager.LoadScene(sceneName));
+			if (_isBusy)
+				return;
+
+			_isBusy = true;
+			InputTools.DisableAllInput();
+
+			StartFadingCoroutines(FadingType.FadeOut);
+			WaitForFadingCoroutinesFinish(AfterFinish);
+
+			void AfterFinish()
+			{
+				InputTools.EnableAllInput();
+				SceneManager.LoadScene(sceneName);
+				_isBusy = false;
+			}
 		}
 
 		private enum FadingType
@@ -57,7 +85,7 @@ namespace Common
 			FadeOut
 		}
 
-		private void RunCoroutines(FadingType type)
+		private void StartFadingCoroutines(FadingType type)
 		{
 			switch (type)
 			{
@@ -90,9 +118,8 @@ namespace Common
 			}
 		}
 
-		private void WaitForFinish(Action onFinish)
+		private void WaitForFadingCoroutinesFinish(Action onFinish = null)
 		{
-			StopAllCoroutines();
 			StartCoroutine(Routine());
 		
 			IEnumerator Routine()

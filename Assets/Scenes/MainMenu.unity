@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a40aa67f41041739fd2e52757c8b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadingDurationOverride: 0.7
+  fadingDurationOverride: 0.9
   rootCanvasGroup: {fileID: 1487390943}
 --- !u!114 &104188415
 MonoBehaviour:
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd6eccb4d5a47f79e74e7cd971b86dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadingDuration: 0.8
+  fadingDuration: 1
 --- !u!114 &104188416
 MonoBehaviour:
   m_ObjectHideFlags: 0

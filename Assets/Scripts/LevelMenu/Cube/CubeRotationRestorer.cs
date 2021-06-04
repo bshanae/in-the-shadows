@@ -8,7 +8,7 @@ namespace LevelMenu
 	public class CubeRotationRestorer : MonoBehaviour
 	{
 		private CubeInput _cubeInput;
-		private Coroutine _coroutine;
+		private bool _isBusy;
 
 		private void Awake()
 		{
@@ -17,7 +17,7 @@ namespace LevelMenu
 
 		private void Update()
 		{
-			if (!_cubeInput.HaveFocus && !transform.rotation.IsZero() && _coroutine == null)
+			if (!_cubeInput.HaveFocus && !transform.rotation.IsZero() && !_isBusy)
 				StartCoroutine(RestorationRoutine());
 		}
 
@@ -27,11 +27,13 @@ namespace LevelMenu
 			var targetRotation = Quaternion.Euler(0, 0, 0);
 			var progress = 0f;
 
+			_isBusy = true;
+
 			do
 			{
 				if (_cubeInput.HaveFocus)
 				{
-					_coroutine = null;
+					_isBusy = false;
 					yield break;
 				}
 
@@ -41,7 +43,7 @@ namespace LevelMenu
 				yield return null;
 			} while (progress <= 1f);
 
-			_coroutine = null;
+			_isBusy = false;
 		}
 	}
 }
