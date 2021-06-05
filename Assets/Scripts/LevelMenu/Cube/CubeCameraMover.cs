@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LevelMenu
 {
 	[RequireComponent(typeof(Collider))]
-	public class CameraToCubeMover : MonoBehaviour
+	public class CubeCameraMover : MonoBehaviour
 	{
 		private CameraMover _cameraMover;
 		private Collider _collider;

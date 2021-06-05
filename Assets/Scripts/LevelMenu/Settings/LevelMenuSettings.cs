@@ -29,8 +29,15 @@ namespace LevelMenu
 		[Serializable]
 		public struct CubeHighlighter
 		{
-			[ColorUsage(false, true)] public Color startEmission;
-			[ColorUsage(false, true)] public Color finishEmission;
+			[ColorUsage(false, true)] public Color emissiveColor;
+			public float duration;
+		}
+
+		[Serializable]
+		public struct LevelLocker
+		{
+			[ColorUsage(false, true)] public Color baseColor;
+			[ColorUsage(false, true)] public Color emissiveColor;
 
 			public float duration;
 		}
@@ -39,6 +46,7 @@ namespace LevelMenu
 		public CubeRotator cubeRotator;
 		public CubeRestorer cubeRestorer;
 		public CubeHighlighter cubeHighlighter;
+		public LevelLocker levelLocker;
 
 		private void Awake()
 		{

@@ -399,13 +399,16 @@ MonoBehaviour:
     threshold: 0.01
   cubeRotator:
     sensitivity: 0.7
-    importanceThreshold: 0.25
+    importanceThreshold: 0.4
   cubeRestorer:
     speed: 0.0005
   cubeHighlighter:
-    startEmission: {r: 0.41960785, g: 0.41960785, b: 0.37843138, a: 1}
-    finishEmission: {r: 0.96400565, g: 0.96400565, b: 0.869407, a: 1}
-    duration: 0.2
+    emissiveColor: {r: 1.509434, g: 1.4598315, b: 1.1035956, a: 1}
+    duration: 0.3
+  levelLocker:
+    baseColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
+    emissiveColor: {r: 0, g: 0, b: 0, a: 0}
+    duration: 2
 --- !u!1 &135601490
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +730,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049449296}
     m_Modifications:
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_Name
+      value: Cup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: levelName
+      value: Or coffee?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: figurePrefab
+      value: Cup
+      objectReference: {fileID: 0}
     - target: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -787,7 +810,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
 --- !u!4 &400098693 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
   m_PrefabInstance: {fileID: 400098692}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &444266932
@@ -951,11 +974,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &576301590 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
-  m_PrefabInstance: {fileID: 6785552433383816910}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &654967688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1151,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049449296}
     m_Modifications:
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_Name
+      value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: levelName
+      value: Beep-beep
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: figurePrefab
+      value: Car
+      objectReference: {fileID: 0}
     - target: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1193,7 +1231,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
 --- !u!4 &1007949158 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
   m_PrefabInstance: {fileID: 1007949157}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049449295
@@ -1223,7 +1261,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 576301590}
+  - {fileID: 6785552433383816911}
   - {fileID: 1337332356}
   - {fileID: 400098693}
   - {fileID: 1729394408}
@@ -1528,6 +1566,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049449296}
     m_Modifications:
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_Name
+      value: Globe
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: levelName
+      value: Where is France?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: figurePrefab
+      value: Globe
+      objectReference: {fileID: 0}
     - target: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1588,7 +1646,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
 --- !u!4 &1231052937 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
   m_PrefabInstance: {fileID: 1231052936}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233716614
@@ -1651,6 +1709,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049449296}
     m_Modifications:
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_Name
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: levelName
+      value: Why not 21?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: figurePrefab
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1711,7 +1789,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
 --- !u!4 &1359827882 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
   m_PrefabInstance: {fileID: 1359827881}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1490412987
@@ -1876,7 +1954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-'
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1431058981eb42babe4c32820f6a2e3, type: 2}
   m_sharedMaterial: {fileID: 4471237886485891110, guid: d1431058981eb42babe4c32820f6a2e3, type: 2}
@@ -2863,6 +2941,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049449296}
     m_Modifications:
+    - target: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_Name
+      value: Teapot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: levelName
+      value: A cup of tea?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: figurePrefab
+      value: Teapot
+      objectReference: {fileID: 0}
     - target: {fileID: 6785552433959965912, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2921,6 +3015,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+--- !u!4 &6785552433383816911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3473116603286232379, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+  m_PrefabInstance: {fileID: 6785552433383816910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8371058341550953180
 PrefabInstance:
   m_ObjectHideFlags: 0

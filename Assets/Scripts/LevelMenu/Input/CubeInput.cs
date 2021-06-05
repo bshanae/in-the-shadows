@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 namespace LevelMenu
 {
 	[RequireComponent(typeof(CubeRotator))]
-	[RequireComponent(typeof(CameraToCubeMover))]
+	[RequireComponent(typeof(CubeCameraMover))]
 	[RequireComponent(typeof(CubeHighlighter))]
-	[RequireComponent(typeof(LevelOpener))]
+	[RequireComponent(typeof(CubeLevelOpener))]
 	public class CubeInput : InputDelegate<InputActions>
 	{
 		private CubeRotator _cubeRotator;
-		private CameraToCubeMover _cameraToCubeMover;
+		private CubeCameraMover _cubeCameraMover;
 		private CubeHighlighter _highlighter;
-		private LevelOpener _levelOpener;
+		private CubeLevelOpener _cubeLevelOpener;
 
 		private Vector2 _totalRotationThisTime;
 
@@ -24,9 +24,9 @@ namespace LevelMenu
 			inputActions.CubeControl.Rotation.performed += OnRotationPerformed;
 
 			_cubeRotator = GetComponent<CubeRotator>();
-			_cameraToCubeMover = GetComponent<CameraToCubeMover>();
+			_cubeCameraMover = GetComponent<CubeCameraMover>();
 			_highlighter = GetComponent<CubeHighlighter>();
-			_levelOpener = GetComponent<LevelOpener>();
+			_cubeLevelOpener = GetComponent<CubeLevelOpener>();
 		}
 
 		protected override void ReceivedFocus()
@@ -46,7 +46,7 @@ namespace LevelMenu
 				didMoveCamera = TryMoveCameraToCube();
 
 			if (!isRotationImportant && !didMoveCamera)
-				_levelOpener.OpenLevel();
+				_cubeLevelOpener.OpenLevel();
 		}
 
 		private void OnRotationPerformed(InputAction.CallbackContext context)
@@ -62,7 +62,7 @@ namespace LevelMenu
 
 		private bool TryMoveCameraToCube()
 		{
-			return _cameraToCubeMover.TryMoveCamera();
+			return _cubeCameraMover.TryMoveCamera();
 		}
 	}
 }

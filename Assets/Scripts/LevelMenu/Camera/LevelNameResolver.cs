@@ -9,14 +9,14 @@ namespace LevelMenu
 		[SerializeField] private TextMeshProUGUI levelName;
 
 		private CameraMover _cameraMover;
-		private LevelNamePoint[] _levelNamePoints;
+		private CubeLevelConfiguration[] _levelConfigurations;
 
-		private Vector3 Point => transform.position;
+		private Vector3 Position => transform.position;
 
 		private void Awake()
 		{
 			_cameraMover = GetComponent<CameraMover>();
-			_levelNamePoints = FindObjectsOfType<LevelNamePoint>();
+			_levelConfigurations = FindObjectsOfType<CubeLevelConfiguration>();
 		}
 
 		private void Start()
@@ -38,20 +38,20 @@ namespace LevelMenu
 		private string FindCurrentLevelName()
 		{
 			var minDistance = float.MaxValue;
-			LevelNamePoint closestPoint = null;
+			CubeLevelConfiguration closestLevel = null;
 
-			foreach (var levelNamePoint in _levelNamePoints)
+			foreach (var levelNamePoint in _levelConfigurations)
 			{
-				var newDistance = Vector3.Distance(this.Point, levelNamePoint.Point);
+				var newDistance = Vector3.Distance(this.Position, levelNamePoint.Position);
 
 				if (newDistance < minDistance)
 				{
 					minDistance = newDistance;
-					closestPoint = levelNamePoint;
+					closestLevel = levelNamePoint;
 				}
 			}
 
-			return closestPoint != null ? closestPoint.LevelName : "-";
+			return (closestLevel != null && closestLevel.IsOpen) ? closestLevel.LevelName : "?";
 		}
 	}
 }

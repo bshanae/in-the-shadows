@@ -7,6 +7,9 @@ namespace LevelMenu
 	{
 		public void TryRotateBy(Vector2 rotation)
 		{
+			if (!enabled)
+				return;
+
 			rotation = ApplySensitivity(rotation);
 
 			var cameraTransform = Finder.FindCamera().transform;
