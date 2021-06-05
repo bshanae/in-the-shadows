@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Common;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace LevelMenu
 		[SerializeField] private float leftBound;
 		[SerializeField] private float rightBound;
 
-		private Coroutine _coroutine;
+		public event Action Moved;
 
 		public bool ShouldMoveTo(float newZ)
 		{
@@ -24,7 +25,8 @@ namespace LevelMenu
 			if (!CanSetAt(newZ))
 				return false;
 
-			_coroutine ??= StartCoroutine(MovementRoutine(offset));
+			StopAllCoroutines();
+			StartCoroutine(MovementRoutine(offset));
 
 			return true;
 		}
@@ -35,6 +37,7 @@ namespace LevelMenu
 				return false;
 
 			transform.Translate(new Vector3(0, 0, offset), Space.World);
+			Moved?.Invoke();
 			return true;
 		}
 
@@ -55,10 +58,9 @@ namespace LevelMenu
 				progress += speed * Time.deltaTime;
 				gameObject.transform.position = Vector3.Lerp(startPosition, finishPosition, progress);
 
+				Moved?.Invoke();
 				yield return null;
 			} while (progress < 1f);
-
-			_coroutine = null;
 		}
 	}
 }

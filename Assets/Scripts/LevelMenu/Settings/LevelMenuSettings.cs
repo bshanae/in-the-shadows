@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 namespace LevelMenu
@@ -36,17 +35,10 @@ namespace LevelMenu
 			public float duration;
 		}
 
-		[Serializable]
-		public struct LevelNameSetter
-		{
-			public TextMeshProUGUI levelName;
-		}
-
 		public CameraMover cameraMover;
 		public CubeRotator cubeRotator;
 		public CubeRestorer cubeRestorer;
 		public CubeHighlighter cubeHighlighter;
-		public LevelNameSetter levelNameSetter;
 
 		private void Awake()
 		{
