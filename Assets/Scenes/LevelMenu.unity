@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 67528951}
   - component: {fileID: 67528954}
   - component: {fileID: 67528955}
+  - component: {fileID: 67528957}
   - component: {fileID: 67528956}
   m_Layer: 0
   m_Name: Camera
@@ -336,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80a302fdaf434c822f2139112507c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.2
+  speed: 2
   leftBound: 0
   rightBound: 9.2
 --- !u!114 &67528956
@@ -352,6 +353,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: {fileID: 1521882767}
+--- !u!114 &67528957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67528950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf483ab1bf743e795155060a58be19b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &100862370
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,17 +411,17 @@ MonoBehaviour:
   cameraMover:
     threshold: 0.01
   cubeRotator:
-    sensitivity: 0.7
+    sensitivity: 0.5
     importanceThreshold: 0.4
   cubeRestorer:
-    speed: 0.0005
+    speed: 0.0008
   cubeHighlighter:
     emissiveColor: {r: 1.509434, g: 1.4598315, b: 1.1035956, a: 1}
-    duration: 0.3
+    duration: 1
   levelLocker:
-    baseColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
-    emissiveColor: {r: 0, g: 0, b: 0, a: 0}
-    duration: 2
+    lockedBaseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+    unlockEmissiveColor: {r: 11.984314, g: 11.607843, b: 8.784314, a: 1}
+    unlockDuration: 2
 --- !u!1 &135601490
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +474,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 400
+  m_Intensity: 800
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -575,7 +588,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200.19386
+  m_Intensity: 400.38773
   m_Range: 12
   m_SpotAngle: 94
   m_InnerSpotAngle: 21.80208
@@ -716,6 +729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLink
       objectReference: {fileID: 0}
+    - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
 --- !u!4 &330722395 stripped
@@ -741,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_Name
       value: Cup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: levelName
@@ -1163,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: levelName
       value: Beep-beep
@@ -1545,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12be5171502264a2187c08ab711c720a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.04
+  speed: 0.015
 --- !u!114 &1204705665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,6 +1602,10 @@ PrefabInstance:
     - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_Name
       value: Globe
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: levelName
@@ -1720,6 +1749,10 @@ PrefabInstance:
     - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: m_Name
       value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458928356115465026, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5824644872333910381, guid: df1329ff1b64c44a08ea9a18f3128dd4, type: 3}
       propertyPath: levelName
@@ -2214,6 +2247,10 @@ PrefabInstance:
     - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
       propertyPath: m_Name
       value: LevelLink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
@@ -2735,6 +2772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLink
       objectReference: {fileID: 0}
+    - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
 --- !u!4 &2092975048 stripped
@@ -3074,6 +3115,10 @@ PrefabInstance:
     - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
       propertyPath: m_Name
       value: LevelLink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371058342545653855, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda48e8b12d134225bd33c1defde1f66, type: 3}

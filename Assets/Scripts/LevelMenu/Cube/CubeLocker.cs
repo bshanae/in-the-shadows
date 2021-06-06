@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
+using Common;
 using UnityEngine;
+
+using Math = Common.Math;
 
 namespace LevelMenu
 {
 	public class CubeLocker : MonoBehaviour
 	{
-		private static readonly int BaseColorProperty = Shader.PropertyToID("_BaseColor");
-		private static readonly int EmissiveColorProperty = Shader.PropertyToID("_EmissiveColor");
-
 		private Material _material;
 
 		private Color _originalBaseColor;
@@ -17,42 +18,39 @@ namespace LevelMenu
 		{
 			_material = GetComponent<Renderer>().material;
 
-			_originalBaseColor = _material.GetColor(BaseColorProperty);
-			_originalEmissiveColor = _material.GetColor(EmissiveColorProperty);
+			_originalBaseColor = _material.GetBaseColor();
+			_originalEmissiveColor = _material.GetEmissiveColor();
 		}
 
 		public void Lock()
 		{
-			var targetBaseColor = LevelMenuSettings.Instance.levelLocker.baseColor;
-			var targetEmissiveColor = LevelMenuSettings.Instance.levelLocker.emissiveColor;
-
-			_material.SetColor(BaseColorProperty, targetBaseColor);
-			_material.SetColor(EmissiveColorProperty, targetEmissiveColor);
+			_material.SetBaseColor(LevelMenuSettings.Instance.levelLocker.lockedBaseColor);
+			_material.SetEmissiveColor(Color.black);
 		}
 
-		public void ShowUnlockAnimation()
+		public void Unlock()
 		{
-			Lock();
-			StopAllCoroutines();
-
-			StartCoroutine(ColorChangeRoutine(BaseColorProperty, _originalBaseColor));
-			StartCoroutine(ColorChangeRoutine(EmissiveColorProperty, _originalEmissiveColor));
+			_material.SetBaseColor(_originalBaseColor);
+			_material.SetEmissiveColor(_originalEmissiveColor);
 		}
 
-		private IEnumerator ColorChangeRoutine(int property, Color targetColor)
+		public void ShowUnlockingAnimation(Action onFinish)
 		{
-			var startColor = _material.GetColor(property).gamma;
-			var progress = 0f;
+			StartCoroutine(Routine());
 
-			do
+			IEnumerator Routine()
 			{
-				progress += Time.deltaTime / LevelMenuSettings.Instance.levelLocker.duration;
+				var emissiveColorRoutine = Routines.MaterialEmissiveColorLerp(
+					_material,
+					LevelMenuSettings.Instance.levelLocker.unlockEmissiveColor,
+					LevelMenuSettings.Instance.levelLocker.unlockDuration,
+					Math.EaseInSine);
 
-				var color = Color.Lerp(startColor, targetColor, progress);
-				_material.SetColor(property, color.linear);
+				yield return emissiveColorRoutine;
 
-				yield return null;
-			} while (progress < 1f);
+				_material.SetBaseColor(_originalBaseColor);
+				onFinish?.Invoke();
+			}
 		}
 	}
 }

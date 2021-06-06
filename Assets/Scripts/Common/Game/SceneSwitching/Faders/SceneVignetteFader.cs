@@ -30,7 +30,7 @@ namespace Common
 
 			_vignetteVolume.weight = startIntensity;
 			
-			while (!MathTools.HaveReachedValue(startIntensity, finishIntensity, _vignetteVolume.weight))
+			while (!Math.HaveReachedValue(startIntensity, finishIntensity, _vignetteVolume.weight))
 			{
 				_vignetteVolume.weight += step * Time.deltaTime;
 				yield return null;

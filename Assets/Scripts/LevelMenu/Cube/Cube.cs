@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 
 namespace LevelMenu
@@ -26,25 +27,47 @@ namespace LevelMenu
 			_cameraMover = GetComponent<CubeCameraMover>();
 			_highlighter = GetComponent<CubeHighlighter>();
 			_locker = GetComponent<CubeLocker>();
-			// _rotator = GetComponent<CubeRotator>();
+			_rotator = GetComponent<CubeRotator>();
 			_rotationRestorer = GetComponent<CubeRotationRestorer>();
+
+			Finder.FindMandatory<SceneSwitcher>().SceneOpened += OnSceneOpened;
 		}
 
 		private void Start()
 		{
-			if (!_levelConfiguration.IsOpen)
-			{
+			if (_levelConfiguration.IsOpened && !_levelConfiguration.IsOpenedFirstTime)
+				_locker.Unlock();
+			else
 				_locker.Lock();
 
-				_levelOpener.enabled = false;
-				_highlighter.enabled = false;
-				_rotator.enabled = false;
-				_rotationRestorer.enabled = false;
-			}
-			else if (_levelConfiguration.WasJustOpened)
+			DisableComponents();
+		}
+
+		private void OnSceneOpened()
+		{
+			if (_levelConfiguration.IsOpened)
 			{
-				_locker.ShowUnlockAnimation();
+				if (_levelConfiguration.IsOpenedFirstTime)	
+					_locker.ShowUnlockingAnimation(EnableComponents);
+				else
+					EnableComponents();
 			}
+		}
+
+		private void EnableComponents()
+		{
+			_levelOpener.enabled = true;
+			_highlighter.enabled = true;
+			_rotator.enabled = true;
+			_rotationRestorer.enabled = true;
+		}
+
+		private void DisableComponents()
+		{
+			_levelOpener.enabled = false;
+			_highlighter.enabled = false;
+			_rotator.enabled = false;
+			_rotationRestorer.enabled = false;
 		}
 	}
 }

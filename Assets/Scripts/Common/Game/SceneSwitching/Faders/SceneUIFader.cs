@@ -23,7 +23,7 @@ namespace Common
 
 			rootCanvasGroup.alpha = startAlpha;
 			
-			while (!MathTools.HaveReachedValue(startAlpha, finishAlpha, rootCanvasGroup.alpha))
+			while (!Math.HaveReachedValue(startAlpha, finishAlpha, rootCanvasGroup.alpha))
 			{
 				rootCanvasGroup.alpha += step * Time.deltaTime;
 				yield return null;

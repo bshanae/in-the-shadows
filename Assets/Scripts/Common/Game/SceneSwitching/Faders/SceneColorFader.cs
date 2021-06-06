@@ -26,7 +26,7 @@ namespace Common
 			overlay.color = color;
 			overlay.color = overlay.color.SetAlpha(startAlpha);
 			
-			while (!MathTools.HaveReachedValue(startAlpha, finishAlpha, overlay.color.a))
+			while (!Math.HaveReachedValue(startAlpha, finishAlpha, overlay.color.a))
 			{
 				overlay.color = overlay.color.AddAlpha(step * Time.deltaTime);
 				yield return null;

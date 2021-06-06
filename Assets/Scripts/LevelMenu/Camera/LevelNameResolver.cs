@@ -51,7 +51,7 @@ namespace LevelMenu
 				}
 			}
 
-			return (closestLevel != null && closestLevel.IsOpen) ? closestLevel.LevelName : "?";
+			return (closestLevel != null && closestLevel.IsOpened) ? closestLevel.LevelName : "?";
 		}
 	}
 }

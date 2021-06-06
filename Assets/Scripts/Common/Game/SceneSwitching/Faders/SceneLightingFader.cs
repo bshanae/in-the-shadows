@@ -102,7 +102,7 @@ namespace Common
 				ApplyIntensityToLights(intensity);
 
 				yield return null;
-			} while (!MathTools.HaveReachedValue(startIntensity, finishIntensity, intensity));
+			} while (!Math.HaveReachedValue(startIntensity, finishIntensity, intensity));
 		}
 
 		private void ApplyIntensityToLights(float intensity)

@@ -36,10 +36,10 @@ namespace LevelMenu
 		[Serializable]
 		public struct LevelLocker
 		{
-			[ColorUsage(false, true)] public Color baseColor;
-			[ColorUsage(false, true)] public Color emissiveColor;
+			public Color lockedBaseColor;
 
-			public float duration;
+			[ColorUsage(false, true)] public Color unlockEmissiveColor;
+			public float unlockDuration;
 		}
 
 		public CameraMover cameraMover;

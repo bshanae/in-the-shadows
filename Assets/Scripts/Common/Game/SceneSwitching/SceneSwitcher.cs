@@ -17,6 +17,8 @@ namespace Common
 		public SceneMeta MetaOfThisScene { get; private set;  }
 		public SceneMeta MetaOfNextScene { get; private set;  }
 
+		public event Action SceneOpened;
+
 		private void Awake()
 		{
 			ProcessFaders();
@@ -57,6 +59,7 @@ namespace Common
 			{
 				InputTools.EnableAllInput();
 				_isBusy = false;
+				SceneOpened?.Invoke();
 			}
 		}
 
