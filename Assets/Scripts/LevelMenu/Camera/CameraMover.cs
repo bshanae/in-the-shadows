@@ -31,6 +31,17 @@ namespace LevelMenu
 			return true;
 		}
 
+		public bool MoveImmediatelyTo(float newZ)
+		{
+			if (!CanSetAt(newZ))
+				return false;
+
+			gameObject.transform.position = gameObject.transform.position.SetZ(newZ);
+			Moved?.Invoke();
+
+			return true;
+		}
+
 		public bool MoveBy(float offset)
 		{
 			if (!CanSetAt(transform.position.z + offset))

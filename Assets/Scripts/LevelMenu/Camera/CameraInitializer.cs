@@ -1,11 +1,18 @@
 using System.Linq;
-using Common;
 using UnityEngine;
 
 namespace LevelMenu
 {
+	[RequireComponent(typeof(CameraMover))]
 	public class CameraInitializer : MonoBehaviour
 	{
+		private CameraMover _cameraMover;
+
+		private void Awake()
+		{
+			_cameraMover = GetComponent<CameraMover>();
+		}
+
 		private void Start()
 		{
 			var allLevels = FindObjectsOfType<CubeLevelConfiguration>();
@@ -20,7 +27,7 @@ namespace LevelMenu
 				return;
 			}
 
-			transform.position = transform.position.SetZ(currentLevel.transform.position.z);
+			_cameraMover.MoveImmediatelyTo(currentLevel.transform.position.z);
 		}
 	}
 }
