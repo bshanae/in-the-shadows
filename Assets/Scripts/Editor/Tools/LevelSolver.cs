@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor.Tools
+namespace Editor
 {
 	public static class LevelSolver
 	{
