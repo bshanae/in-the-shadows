@@ -21,8 +21,8 @@ namespace Level
 
 		private void TryInstantiatePrefab()
 		{
-			var name = Finder.FindMandatory<LevelMetaLoader>().FigurePrefab;
-			var prefab = Resources.Load<GameObject>($"{PrefabFolder}/{name}");
+			var levelConfiguration = Finder.FindMandatory<LevelConfigurator>().levelConfiguration;
+			var prefab = Resources.Load<GameObject>($"{PrefabFolder}/{levelConfiguration.FigurePrefab}");
 
 			if (prefab != null)
 			{
@@ -31,7 +31,7 @@ namespace Level
 			}
 			else
 			{
-				Debug.LogError($"Prefab {name} not found!");
+				Debug.LogError($"Prefab '{levelConfiguration.FigurePrefab}' not found!");
 				FigureLoaded?.Invoke();
 			}
 		}

@@ -5,24 +5,20 @@ namespace Common
 {
 	public class LevelManager
 	{
-		private static LevelManager _instance;
-
-		public static LevelManager Instance
-		{
-			get
-			{
-				if (_instance == null)
-					_instance = new LevelManager();
-
-				return _instance;
-			}
-		}
+		public static LevelManager Instance => _instance ??= new LevelManager();
 
 		public LevelConfiguration[] Configurations { get; }
 
+		public LevelConfiguration FindLevelConfiguration(int index)
+		{
+			return Configurations.FirstOrDefault(configuration => configuration.LevelIndex == index);
+		}
+
+		private static LevelManager _instance;
+
 		private LevelManager()
 		{
-			var unsorted = Resources.FindObjectsOfTypeAll<LevelConfiguration>();
+			var unsorted = Resources.LoadAll<LevelConfiguration>("Levels");
 			var sorted = unsorted.OrderBy(configuration => configuration.LevelIndex).ToArray();
 
 			Configurations = sorted;

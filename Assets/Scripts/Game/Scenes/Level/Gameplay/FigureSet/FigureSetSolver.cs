@@ -13,7 +13,8 @@ namespace Level
 
 		private Quaternion CurrentRotationQuaternion => Quaternion.Euler(transform.rotation.eulerAngles);
 		private Quaternion TargetRotationQuaternion => Quaternion.Euler(targetRotation);
-		private float Threshold => LevelSettings.Instance.figureSetSolver.threshold;
+
+		private static float Threshold => LevelSettings.Instance.figureSetSolver.threshold;
 
 		private void Update()
 		{

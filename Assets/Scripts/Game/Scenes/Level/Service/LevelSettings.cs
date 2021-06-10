@@ -1,4 +1,5 @@
 using System;
+using Common;
 using UnityEngine;
 
 namespace Level
@@ -10,12 +11,14 @@ namespace Level
 		[Serializable]
 		public struct FigureRotator
 		{
+			public FigureRotationMode rotationMode;
 			public float sensitivity;
 		}
 
 		[Serializable]
 		public struct FigureSetRotator
 		{
+			public FigureSetRotationMode rotationMode;
 			public float sensitivity;
 		}
 	

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Editor
 {
-	public static class LevelSolver
+	public static class LevelTools
 	{
 		[MenuItem("Tools/Solve level")]
 		public static void Solve()

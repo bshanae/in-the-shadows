@@ -33,5 +33,25 @@ namespace Common
 		{
 			return new Vector3(vector.x, vector.y, z);
 		}
+
+		public static bool AreAllComponentsLess(this Vector3 a, Vector3 b)
+		{
+			return a.x < b.x && a.y < b.y && a.z < b.z;
+		}
+
+		public static bool AreAllComponentsLessOrEqual(this Vector3 a, Vector3 b)
+		{
+			return a.x <=b.x && a.y <= b.y && a.z <= b.z;
+		}
+
+		public static bool AreAllComponentsGreater(this Vector3 a, Vector3 b)
+		{
+			return a.x > b.x && a.y > b.y && a.z > b.z;
+		}
+
+		public static bool AreAllComponentsGreaterOrEqual(this Vector3 a, Vector3 b)
+		{
+			return a.x >=b.x && a.y >= b.y && a.z >= b.z;
+		}
 	}
 }

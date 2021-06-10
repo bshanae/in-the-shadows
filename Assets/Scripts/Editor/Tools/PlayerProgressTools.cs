@@ -1,10 +1,11 @@
+using Common;
 using UnityEditor;
 
 namespace Editor
 {
-	public static class PlayerProgress
+	public static class PlayerProgressTools
 	{
-		private static Common.PlayerProgress Instance => Common.PlayerProgress.Instance;
+		private static PlayerProgress Instance => PlayerProgress.Instance;
 
 		[MenuItem("Tools/Increment progress")]
 		public static void IncrementProgress()

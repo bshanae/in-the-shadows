@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21816ccd7faf44ba8cac0f209c48419a, type: 3}
-  m_Name: 2-Car
+  m_Name: 3-Elephant
   m_EditorClassIdentifier: 
-  levelIndex: 2
-  levelName: Beep-beep
-  figurePrefab: Car
+  levelIndex: 3
+  levelName: An Indian attraction
+  figurePrefab: Elephant
+  figureRotationMode: 3
+  figureSolutionThreshold: 8
+  figureSetRotationMode: 0
+  figureSetSolutionThreshold: 0

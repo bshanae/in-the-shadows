@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21816ccd7faf44ba8cac0f209c48419a, type: 3}
-  m_Name: 3-Elephant
+  m_Name: 5-Globe
   m_EditorClassIdentifier: 
-  levelIndex: 3
-  levelName: It's an animal...
-  figurePrefab: Elephant
+  levelIndex: 5
+  levelName: Where is Africa?
+  figurePrefab: Globe
+  figureRotationMode: 3
+  figureSolutionThreshold: 30
+  figureSetRotationMode: 2
+  figureSetSolutionThreshold: 30

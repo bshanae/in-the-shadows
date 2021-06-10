@@ -15,3 +15,7 @@ MonoBehaviour:
   levelIndex: 4
   levelName: Why not 21?
   figurePrefab: 42
+  figureRotationMode: 3
+  figureSolutionThreshold: 30
+  figureSetRotationMode: 1
+  figureSetSolutionThreshold: 30

@@ -15,7 +15,7 @@ namespace Common
 
 		protected abstract void LoadMeta(SceneMeta meta);
 
-		private void Start()
+		private void Awake()
 		{
 			try
 			{
