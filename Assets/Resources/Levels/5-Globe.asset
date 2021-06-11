@@ -16,6 +16,6 @@ MonoBehaviour:
   levelName: Where is Africa?
   figurePrefab: Globe
   figureRotationMode: 3
-  figureSolutionThreshold: 30
-  figureSetRotationMode: 2
-  figureSetSolutionThreshold: 30
+  figureSolutionThreshold: 14
+  figureSetRotationMode: 1
+  figureSetSolutionThreshold: 14

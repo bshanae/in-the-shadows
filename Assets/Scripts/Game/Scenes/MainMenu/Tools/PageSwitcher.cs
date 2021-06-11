@@ -23,10 +23,12 @@ namespace MainMenu
 			const float fadeDuration = 0.25f;
 
 			yield return FadeCoroutine(from, 1, 0, fadeDuration);
-			from.gameObject.SetActive(false);
-			
-			to.gameObject.SetActive(true);
-			to.GetComponent<CanvasGroup>().alpha = 0;
+			from.canvasGroup.interactable = false;
+			from.canvasGroup.blocksRaycasts = false;
+
+			to.canvasGroup.alpha = 0;
+			to.canvasGroup.interactable = true;
+			to.canvasGroup.blocksRaycasts = true;
 
 			yield return FadeCoroutine(to, 0, 1, fadeDuration);
 		}

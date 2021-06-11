@@ -16,6 +16,6 @@ MonoBehaviour:
   levelName: An Indian attraction
   figurePrefab: Elephant
   figureRotationMode: 3
-  figureSolutionThreshold: 8
+  figureSolutionThreshold: 30
   figureSetRotationMode: 0
   figureSetSolutionThreshold: 0
