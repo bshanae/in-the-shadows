@@ -1149,7 +1149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3083a07f1ef4bc484a46de9673889d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
   settingsPage: {fileID: 1729017564}
 --- !u!1 &338970828
 GameObject:
@@ -2739,7 +2738,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -3260,7 +3259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ead8f577a54433aae8a63d8e143db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
   mainPage: {fileID: 320618066}
 --- !u!1 &1788372105
 GameObject:

@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: met_acciaio
-    second: {fileID: 2100000, guid: ec00b75fbaaac4a58aab28f6a4558fb9, type: 2}
+    second: {fileID: 2100000, guid: 1a31c8cdefeba456db537c0e89f0bcdc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: met_neroluc
-    second: {fileID: 2100000, guid: e83316cfd479a4cb1b8141e99cd38511, type: 2}
+    second: {fileID: 2100000, guid: 947e60225955247228c7e353ad4a7181, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: plast_nera
-    second: {fileID: 2100000, guid: 7154e2c6620974e3fa89c9b119c8ba53, type: 2}
+    second: {fileID: 2100000, guid: 6152d8985a40f40c4ae2661fa3bdff53, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tubi_sat
-    second: {fileID: 2100000, guid: 481da5e752d654048b40b5496150303a, type: 2}
+    second: {fileID: 2100000, guid: 98bcfdac5049d4202b5e7088aebd5a97, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -65,7 +65,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
