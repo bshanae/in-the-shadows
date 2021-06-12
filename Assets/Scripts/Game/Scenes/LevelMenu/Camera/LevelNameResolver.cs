@@ -1,3 +1,4 @@
+using Common;
 using TMPro;
 using UnityEngine;
 
@@ -51,10 +52,18 @@ namespace LevelMenu
 				}
 			}
 
-			if (closestLevel != null && closestLevel.LevelConfiguration.IsOpened)
-				return closestLevel.LevelConfiguration.LevelName;
-			else
-				return "?";
+			return CanShowNameOrLevel(closestLevel) ? closestLevel.LevelConfiguration.LevelName : "?";
+
+			static bool CanShowNameOrLevel(CubeLevelConfigurationHolder levelHolder)
+			{
+				if (levelHolder == null)
+					return false;
+
+				var testMode = Finder.Find<LevelMenuMetaLoader>().TestMode;
+				var isOpened = levelHolder.LevelConfiguration.IsOpened;
+
+				return testMode || isOpened;
+			}
 		}
 	}
 }

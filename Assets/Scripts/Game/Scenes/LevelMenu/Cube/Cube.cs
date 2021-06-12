@@ -26,7 +26,10 @@ namespace LevelMenu
 		{
 			get
 			{
-				return _levelConfigurationHolder.LevelConfiguration.IsOpened;
+				var testMode = Finder.Find<LevelMenuMetaLoader>().TestMode;
+				var isOpened = _levelConfigurationHolder.LevelConfiguration.IsOpened;
+
+				return testMode || isOpened;
 			}
 		}
 

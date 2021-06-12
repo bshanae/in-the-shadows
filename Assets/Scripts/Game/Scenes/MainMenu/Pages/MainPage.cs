@@ -6,19 +6,13 @@ namespace MainMenu
 {
 	public class MainPage : Page
 	{
+		[SerializeReference] private Page playPage;
 		[SerializeReference] private Page settingsPage;
 
 		[UsedImplicitly]
 		public void PlayButtonPressed()
 		{
-			try
-			{
-				Finder.FindMandatory<SceneSwitcher>().SwitchToScene("LevelMenu");
-			}
-			catch (Finder.MandatoryObjectNotFound)
-			{
-				Debug.LogError("Can't find scene switcher!");
-			}
+			PageSwitcher.Instance.Switch(this, playPage);
 		}
 
 		[UsedImplicitly]
