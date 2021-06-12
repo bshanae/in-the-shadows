@@ -13,6 +13,7 @@ namespace LevelMenu
 		private CubeRotator _cubeRotator;
 		private CubeCameraMover _cubeCameraMover;
 		private CubeHighlighter _highlighter;
+		private CubeSoundPlayer _cubeSoundPlayer;
 		private CubeLevelOpener _cubeLevelOpener;
 
 		private Vector2 _totalRotationThisTime;
@@ -26,6 +27,7 @@ namespace LevelMenu
 			_cubeRotator = GetComponent<CubeRotator>();
 			_cubeCameraMover = GetComponent<CubeCameraMover>();
 			_highlighter = GetComponent<CubeHighlighter>();
+			_cubeSoundPlayer = GetComponent<CubeSoundPlayer>();
 			_cubeLevelOpener = GetComponent<CubeLevelOpener>();
 		}
 
@@ -33,6 +35,7 @@ namespace LevelMenu
 		{
 			_totalRotationThisTime = new Vector2();
 			_highlighter.Highlight();
+			_cubeSoundPlayer.PlayClickSound();
 		}
 
 		protected override void LostFocus()

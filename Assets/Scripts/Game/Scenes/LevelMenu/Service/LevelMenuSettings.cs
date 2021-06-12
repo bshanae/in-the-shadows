@@ -34,6 +34,12 @@ namespace LevelMenu
 		}
 
 		[Serializable]
+		public struct CubeSoundPlayer
+		{
+			public AudioClip clickSound;
+		}
+
+		[Serializable]
 		public struct LevelLocker
 		{
 			public Color lockedBaseColor;
@@ -46,6 +52,7 @@ namespace LevelMenu
 		public CubeRotator cubeRotator;
 		public CubeRestorer cubeRestorer;
 		public CubeHighlighter cubeHighlighter;
+		public CubeSoundPlayer cubeSoundPlayer;
 		public LevelLocker levelLocker;
 
 		private void Awake()

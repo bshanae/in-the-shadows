@@ -11,7 +11,7 @@ namespace Editor
 			var solver = Object.FindObjectOfType<Level.LevelSolver>();
 
 			if (solver != null)
-				solver.SolveAutomatically();
+				solver.SolvePrecisely();
 			else
 				Debug.LogError("Level solver not found");
 		}

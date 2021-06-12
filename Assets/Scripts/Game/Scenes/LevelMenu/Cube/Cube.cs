@@ -7,6 +7,7 @@ namespace LevelMenu
 	[RequireComponent(typeof(CubeLevelOpener))]
 	[RequireComponent(typeof(CubeCameraMover))]
 	[RequireComponent(typeof(CubeHighlighter))]
+	[RequireComponent(typeof(CubeSoundPlayer))]
 	[RequireComponent(typeof(CubeLocker))]
 	[RequireComponent(typeof(CubeRotator))]
 	[RequireComponent(typeof(CubeRotationRestorer))]
@@ -16,6 +17,7 @@ namespace LevelMenu
 		private CubeLevelOpener _levelOpener;
 		private CubeCameraMover _cameraMover;
 		private CubeHighlighter _highlighter;
+		private CubeSoundPlayer _soundPlayer;
 		private CubeLocker _locker;
 		private CubeRotator _rotator;
 		private CubeRotationRestorer _rotationRestorer;
@@ -45,6 +47,7 @@ namespace LevelMenu
 			_levelOpener = GetComponent<CubeLevelOpener>();
 			_cameraMover = GetComponent<CubeCameraMover>();
 			_highlighter = GetComponent<CubeHighlighter>();
+			_soundPlayer = GetComponent<CubeSoundPlayer>();
 			_locker = GetComponent<CubeLocker>();
 			_rotator = GetComponent<CubeRotator>();
 			_rotationRestorer = GetComponent<CubeRotationRestorer>();
@@ -71,8 +74,10 @@ namespace LevelMenu
 					_locker.ShowUnlockingAnimation(EnableComponents);
 					PlayerProgress.Instance.UnsetNewLevel();
 				}
-
-				EnableComponents();
+				else
+				{
+					EnableComponents();
+				}
 			}
 		}
 
@@ -80,6 +85,7 @@ namespace LevelMenu
 		{
 			_levelOpener.enabled = true;
 			_highlighter.enabled = true;
+			_soundPlayer.enabled = true;
 			_rotator.enabled = true;
 			_rotationRestorer.enabled = true;
 		}
@@ -88,6 +94,7 @@ namespace LevelMenu
 		{
 			_levelOpener.enabled = false;
 			_highlighter.enabled = false;
+			_soundPlayer.enabled = false;
 			_rotator.enabled = false;
 			_rotationRestorer.enabled = false;
 		}

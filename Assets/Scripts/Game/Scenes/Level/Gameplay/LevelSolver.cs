@@ -9,6 +9,10 @@ namespace Level
 {
 	public class LevelSolver : MonoBehaviour
 	{
+		private const string SolvedClipPath = "Audio/Gong";
+
+		private AudioSource _audioSource;
+
 		private FigureSetSolver _figureSet;
 		private FigureSolver[] _figures;
 
@@ -50,16 +54,16 @@ namespace Level
 
 		private bool ShouldTryToSolve
 		{
-			get
-			{
-				return _areFiguresLoaded && _isWaitingForSolution;
-			}
+			get { return _areFiguresLoaded && _isWaitingForSolution; }
 		}
 
 		public event Action LevelSolved;
 
 		private void Awake()
 		{
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.clip = Resources.Load<AudioClip>(SolvedClipPath);
+
 			_isWaitingForSolution = true;
 
 			var figureLoader = Finder.Find<FigureLoader>();
@@ -79,21 +83,7 @@ namespace Level
 		private void Update()
 		{
 			if (ShouldTryToSolve && IsSolved)
-			{
-				_isWaitingForSolution = false;
-				ShowExactSolution(OnSolutionShowed);
-			}
-
-			void OnSolutionShowed()
-			{
-				if (ShouldIncrementProgress)
-				{
-					PlayerProgress.Instance.IncrementLevel();
-					PlayerProgress.Instance.SetNewLevelAsCurrent();	
-				}
-
-				LevelSolved?.Invoke();
-			}
+				SolvePrecisely();
 		}
 
 		private void OnFigureLoaded()
@@ -104,17 +94,14 @@ namespace Level
 			_areFiguresLoaded = true;
 		}
 
-		public void SolveAutomatically()
+		public void SolvePrecisely()
 		{
+			_audioSource.Play();
+
 			_isWaitingForSolution = false;
-			ShowExactSolution(() => LevelSolved?.Invoke());
-		}
+			StartCoroutine(Routine(OnRoutineFinished));
 
-		private void ShowExactSolution(Action onFinish = null)
-		{
-			StartCoroutine(Routine());
-
-			IEnumerator Routine()
+			IEnumerator Routine(Action onFinish = null)
 			{
 				InputTools.DisableAllInput();
 
@@ -126,9 +113,20 @@ namespace Level
 
 				while (IsBusy)
 					yield return null;
-				
+
 				InputTools.EnableAllInput();
 				onFinish?.Invoke();
+			}
+
+			void OnRoutineFinished()
+			{
+				if (ShouldIncrementProgress)
+				{
+					PlayerProgress.Instance.IncrementLevel();
+					PlayerProgress.Instance.SetNewLevelAsCurrent();
+				}
+				
+				LevelSolved?.Invoke();
 			}
 		}
 	}

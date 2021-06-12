@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using AudioSettings = Game.Common.AudioSettings;
 
 namespace MainMenu
 {
@@ -10,13 +11,13 @@ namespace MainMenu
         [UsedImplicitly]
         public void SoundButtonPressed()
         {
-            
+            AudioSettings.Instance.CanPlaySounds = !AudioSettings.Instance.CanPlaySounds;
         }
 
         [UsedImplicitly]
         public void MusicButtonPressed()
         {
-            
+            AudioSettings.Instance.CanPlayMusic = !AudioSettings.Instance.CanPlayMusic;
         }
 
         [UsedImplicitly]

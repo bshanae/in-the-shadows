@@ -15,7 +15,7 @@ MonoBehaviour:
   levelIndex: 1
   levelName: Coffee?
   figurePrefab: Cup
-  figureRotationMode: 2
+  figureRotationMode: 3
   figureSolutionThreshold: 8
   figureSetRotationMode: 0
   figureSetSolutionThreshold: 0
