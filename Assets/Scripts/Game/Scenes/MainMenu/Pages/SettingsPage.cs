@@ -21,6 +21,12 @@ namespace MainMenu
         }
 
         [UsedImplicitly]
+        public void FullScreenButtonPressed()
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+
+        [UsedImplicitly]
         public void GoBackButtonPressed()
         {
             PageSwitcher.Instance.Switch(this, mainPage);

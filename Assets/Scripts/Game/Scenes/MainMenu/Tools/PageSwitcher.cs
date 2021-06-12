@@ -22,31 +22,26 @@ namespace MainMenu
 		{
 			const float fadeDuration = 0.25f;
 
+			from.IsEnabled = false;
 			yield return FadeCoroutine(from, 1, 0, fadeDuration);
-			from.canvasGroup.interactable = false;
-			from.canvasGroup.blocksRaycasts = false;
-
-			to.canvasGroup.alpha = 0;
-			to.canvasGroup.interactable = true;
-			to.canvasGroup.blocksRaycasts = true;
 
 			yield return FadeCoroutine(to, 0, 1, fadeDuration);
+			to.IsEnabled = true;
 		}
 
 		private IEnumerator FadeCoroutine(Page page, float alphaStart, float alphaFinish, float duration)
 		{
-			var canvasGroup = page.GetComponent<CanvasGroup>();
 			var alphaStep = (alphaFinish - alphaStart) / duration;
 
-			canvasGroup.alpha = alphaStart;
+			page.Alpha = alphaStart;
 			
-			while(Mathf.Abs(canvasGroup.alpha - alphaFinish) > float.Epsilon)
+			while(Mathf.Abs(page.Alpha - alphaFinish) > float.Epsilon)
 			{
-				canvasGroup.alpha += alphaStep * Time.deltaTime;
+				page.Alpha += alphaStep * Time.deltaTime;
 				yield return null;
 			}
 
-			canvasGroup.alpha = alphaFinish;
+			page.Alpha = alphaFinish;
 		}
 	}
 }
