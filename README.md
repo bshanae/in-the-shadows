@@ -19,9 +19,9 @@ A Mac OS executable will be generated.
 
 ## Controls
 
-* `Hold LMB` to rotate figure horizontally and vertically
-* `Hold LMB` + `alt` to rotate figure in parallel to background
-* `Hold LMB` + `cmd` to rotate figure set
+* `LMB` to rotate figure horizontally and vertically
+* `LMB` + `alt` to rotate figure in parallel to background
+* `LMB` + `cmd` to rotate figure set
 
 ## Resources
 
