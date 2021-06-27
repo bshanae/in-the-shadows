@@ -11,6 +11,8 @@ https://user-images.githubusercontent.com/49374370/121819338-2cdff400-cc95-11eb-
 Remake of mobile game 'Shadowmatic'.
 The gameplay consists of rotating some shitty strange models to get a real object from their shadows.
 
+I used Unity HDRP for implementation of this project.
+
 ## Build
 
 Download the project. Open Unity (you need version 2020.3.9f1).
