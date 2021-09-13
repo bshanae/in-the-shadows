@@ -27,4 +27,4 @@ A Mac OS executable will be generated.
 
 ## Resources
 
-* Many, but this [guy helped](https://www.youtube.com/user/Brackeys) me a lot
+* Many, but this [guy helped](https://www.youtube.com/user/Brackeys) me most
